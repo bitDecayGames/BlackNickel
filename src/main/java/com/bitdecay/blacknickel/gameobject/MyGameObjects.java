@@ -69,4 +69,9 @@ public class MyGameObjects implements ICleanup {
         gobs.forEach(MyGameObject::cleanup);
         refreshables.forEach(r -> r.refresh(gobs));
     }
+
+    @Override
+    public String toString() {
+        return gobs.toString();
+    }
 }

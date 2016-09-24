@@ -3,6 +3,7 @@ package com.bitdecay.blacknickel.gameobject;
 import com.bitdecay.blacknickel.component.AbstractComponent;
 import com.bitdecay.blacknickel.trait.ICleanup;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +44,18 @@ public class MyGameObject implements ICleanup {
         dirty = true;
         componentsToAdd.add(component);
         return this;
+    }
+
+    /**
+     * This is a way to add a component but it assumes that the component has a constructor with just a MyGameObject
+     */
+    public <T extends AbstractComponent> MyGameObject addComponent(Class<T> clazz){
+        try {
+            Constructor<T> constructor = clazz.getConstructor(MyGameObject.class);
+            return addComponent(constructor.newInstance(this));
+        } catch (Exception e){
+            throw new RuntimeException("Expected there to be a constructor with just a MyGameObject", e);
+        }
     }
 
     /**

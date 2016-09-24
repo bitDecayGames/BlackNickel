@@ -30,12 +30,12 @@ public class PhysicsComponent extends AbstractComponent implements IInitializabl
         body.props.deceleration = deceleration;
         body.props.acceleration = acceleration;
         body.props.airAcceleration = airAcceleration;
+        body.props.gravitational = gravitational;
+        body.props.gravityModifier = gravityModifier;
         body.jumperProps = new JumperProperties();
         body.jumperProps.jumpStrength = jumpStrength;
         body.jumperProps.jumpCount = jumpCount;
         body.jumperProps.jumpVariableHeightWindow = jumpVariableHeightWindow;
-        body.props.gravitational = gravitational;
-        body.props.gravityModifier = gravityModifier;
         body.bodyType = BodyType.DYNAMIC;
         body.aabb.set(new BitRectangle(0, 0, width, height));
         body.userObject = this;
@@ -80,5 +80,6 @@ public class PhysicsComponent extends AbstractComponent implements IInitializabl
     @Override
     public void remove(AbstractRoom room) {
         room.getWorld().removeBody(body);
+        initialized = false;
     }
 }
