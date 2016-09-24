@@ -1,3 +1,3 @@
-# {{Project Name}}
+# Black Nickel
 
 {{project description}}

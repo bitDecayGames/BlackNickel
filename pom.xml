@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- TODO: enter the project name and version -->
-    <artifactId>project-name</artifactId>
-    <name>project-name</name>
+    <artifactId>blacknickel</artifactId>
+    <name>Black Nickel</name>
     <version>1.0</version>
 
     <groupId>com.bitdecay</groupId>
@@ -12,7 +12,7 @@
 
     <properties>
         <!-- TODO: put the actual main launcher class in here -->
-        <mainClass>com.bitdecay.ludum.dare.Launcher</mainClass>
+        <mainClass>com.bitdecay.blacknickel.Launcher</mainClass>
 
         <!-- these will change based on what the current version of the tools are -->
         <jumpVersion>2.0</jumpVersion>
