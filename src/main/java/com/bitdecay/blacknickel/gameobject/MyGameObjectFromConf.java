@@ -34,13 +34,17 @@ public final class MyGameObjectFromConf {
 
     public static MyGameObject objectFromConf(String name, float x, float y){
         Optional<Config> conf = configForObjectName(name);
+        if (! conf.isPresent()) err("(object: " + name + ") Could not find conf");
         MyGameObject obj = new MyGameObject();
         new NameComponent(obj, name).addSelfToGameObject();
         new PositionComponent(obj, x, y).addSelfToGameObject();
         new IconComponent(obj, conf.map(config -> {
             if (config.hasPath("icon")) return config.getString("icon");
-            else throw new RuntimeException("icon is missing from conf value with name: " + name);
-        }).orElseThrow(() -> new RuntimeException("icon is missing from conf value with name: " + name))).addSelfToGameObject();
+            else {
+                err("(object: " + name + ") icon is missing from conf");
+                return null;
+            }
+        }).get()).addSelfToGameObject();
         List<Config> componentsList = componentConfigListForConfig(conf);
         componentsList.forEach(componentConf -> {
             String className = "com.bitdecay.blacknickel.component." + componentConf.getString("name") + "Component";
@@ -54,15 +58,15 @@ public final class MyGameObjectFromConf {
                         Constructor<? extends AbstractComponent> componentConstructor = componentClass.getConstructor(MyGameObject.class);
                         componentConstructor.newInstance(obj).addSelfToGameObject();
                     } catch (NoSuchMethodException b) {
-                        err("Could not construct component with name: " + className + " (Tip: look in the component class, there must be a constructor that takes only a MyGameObject, or a constructor that takes a MyGameObject and a Config)");
+                        err("(object: " + name + ") Could not construct component with name: " + className + " (Tip: look in the component class, there must be a constructor that takes only a MyGameObject, or a constructor that takes a MyGameObject and a Config)");
                     }
                 }
             } catch (ClassNotFoundException e) {
-                err("Could not find class with name: " + className);
+                err("(object: " + name + ") Could not find class with name: " + className);
             } catch (InvocationTargetException e){
-                err("There was a problem creating " + className + " (Tip: your conf file is probably missing a key:value or the key is misspelled)", e.getCause());
+                err("(object: " + name + ") There was a problem creating " + className + " (Tip: your conf file is probably missing a key:value or the key is misspelled)", e.getCause());
             } catch (Exception e){
-                err("General exception", e);
+                err("(object: " + name + ") General exception", e);
             }
         });
         obj.cleanup();

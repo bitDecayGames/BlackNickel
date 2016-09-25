@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ConfBasedLevelObject extends RenderableLevelObject {
 
     @CantInspect
-    private final String name;
+    public final String name;
 
     @CantInspect
     private final MyGameObject obj;

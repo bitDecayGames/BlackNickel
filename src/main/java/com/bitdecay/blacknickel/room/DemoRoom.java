@@ -1,8 +1,6 @@
 package com.bitdecay.blacknickel.room;
 
 
-import com.bitdecay.blacknickel.component.UnderControlComponent;
-import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
 import com.bitdecay.blacknickel.screen.GameScreen;
 import com.bitdecay.blacknickel.system.*;
 import com.bitdecay.jump.level.Level;
@@ -29,8 +27,5 @@ public class DemoRoom extends AbstractRoom {
         new ShapeDrawSystem(this);
         new DrawSystem(this);
         new RemovalSystem(this);
-
-        gobs.add(MyGameObjectFactory.objectFromConf("Ghost", 0, 50).addComponent(UnderControlComponent.class));
-        gobs.add(MyGameObjectFactory.objectFromConf("Shell", 0, 30));
     }
 }

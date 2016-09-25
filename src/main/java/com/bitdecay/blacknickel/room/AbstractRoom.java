@@ -54,7 +54,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
 
         world.setGravity((float) Launcher.conf.getDouble("world.gravity.x"), (float) Launcher.conf.getDouble("world.gravity.y"));
 
-        levelChanged(level);
+        if (level != null) levelChanged(level);
     }
 
     public MyGameObjects getGameObjects(){

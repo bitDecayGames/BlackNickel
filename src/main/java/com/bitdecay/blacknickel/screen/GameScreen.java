@@ -35,7 +35,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
 
     public GameScreen(MyGame game){
         this.game = game;
-        setRoom(new DemoRoom(this, LevelUtilities.loadLevel("src/main/resources/level/simple.level")));
+        setRoom(new DemoRoom(this, LevelUtilities.loadLevel(Launcher.conf.getString("demoLevel"))));
     }
     public GameScreen(MyGame game, com.bitdecay.blacknickel.room.AbstractRoom room){
         this.game = game;

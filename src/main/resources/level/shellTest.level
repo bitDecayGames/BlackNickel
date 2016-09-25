@@ -1171,7 +1171,32 @@
           "collideNValue" : 12,
           "oneway" : false
         } ] ],
-        "otherObjects" : [ "java.util.HashMap", { } ],
+        "otherObjects" : [ "java.util.HashMap", {
+          "3ea8fc1e-b1af-4776-b85e-1180d149f13b" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+            "name" : "Shell",
+            "rect" : {
+              "xy" : {
+                "x" : 16.0,
+                "y" : 48.0
+              },
+              "width" : 10.0,
+              "height" : 10.0
+            },
+            "uuid" : "3ea8fc1e-b1af-4776-b85e-1180d149f13b"
+          } ],
+          "65c32b86-3fa7-4568-ac1b-9e636253c93d" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+            "name" : "Ghost",
+            "rect" : {
+              "xy" : {
+                "x" : -32.0,
+                "y" : 32.0
+              },
+              "width" : 13.0,
+              "height" : 18.0
+            },
+            "uuid" : "65c32b86-3fa7-4568-ac1b-9e636253c93d"
+          } ]
+        } ],
         "triggers" : [ "java.util.HashMap", { } ],
         "cellSize" : 16
       }
