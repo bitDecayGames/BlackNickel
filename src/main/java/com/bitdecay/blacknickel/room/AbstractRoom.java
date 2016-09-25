@@ -54,7 +54,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
 
         world.setGravity((float) Launcher.conf.getDouble("world.gravity.x"), (float) Launcher.conf.getDouble("world.gravity.y"));
 
-        if (level != null) levelChanged(level);
+        this.level = level;
     }
 
     public MyGameObjects getGameObjects(){
@@ -132,11 +132,11 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     @Override
     public final void levelChanged(Level level) {
         world.removeAllBodies();
+        gobs.clear();
+
         world.setLevel(level);
         this.level = level;
 
-        gobs.clear();
-        gobs.cleanup();
         // generate game objects from level tiles
         level.layers.layers.forEach((index, layer)->{
             for (int x = 0; x < layer.grid.length; x++) {
@@ -146,8 +146,14 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
                 }
             }
         });
+
         // generate game objects from renderable level objects
-        level.layers.layers.forEach((index, layer) -> layer.otherObjects.forEach((uuid, levelObject) -> gobs.add(MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y))));
+        level.layers.layers.forEach((index, layer) -> {
+            layer.otherObjects.forEach((uuid, levelObject) -> {
+                gobs.add(MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y));
+            });
+        });
+
         gobs.cleanup();
     }
 }

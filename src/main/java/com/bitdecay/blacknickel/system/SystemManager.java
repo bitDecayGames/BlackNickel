@@ -75,4 +75,9 @@ public class SystemManager implements ICleanup, IRefreshable, IUpdate, IDrawWith
             if (sys instanceof IDrawWithCamera) ((IDrawWithCamera) sys).draw(spriteBatch, camera);
         });
     }
+
+    @Override
+    public String toString() {
+        return systems.toString();
+    }
 }
