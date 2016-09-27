@@ -96,6 +96,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     @Override
     public void dispose() {
         spriteBatch.dispose();
+        shapeRenderer.dispose();
     }
 
     // /////////////////////////////////////
