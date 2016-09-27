@@ -7,8 +7,9 @@
 **/bin/
 **.DS_Store
 **/build/
-**/target
+target/
 **.iml
 classes
+dependency-reduced-pom.xml
 
 src/main/resources/img/packed/

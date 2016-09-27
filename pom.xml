@@ -91,18 +91,70 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <descriptor>assembly.xml</descriptor>
-                </configuration>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>create-archive</id>
+                        <id>l4j-clui</id>
                         <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
+                        <goals><goal>launch4j</goal></goals>
+                        <configuration>
+                            <headerType>console</headerType>
+                            <outfile>target/${project.artifactId}-${project.version}.exe</outfile>
+                            <jar>target/${project.artifactId}-${project.version}.jar</jar>
+                            <errTitle>${project.name}</errTitle>
+                            <classPath>
+                                <mainClass>${mainClass}</mainClass>
+                                <addDependencies>false</addDependencies>
+                                <preCp>anything</preCp>
+                            </classPath>
+                            <icon>src/main/resources/img/standalone/icon/windowsIcon.ico</icon>
+                            <singleInstance>
+                                <mutexName>${project.name}</mutexName>
+                                <windowTitle>${project.name}</windowTitle>
+                            </singleInstance>
+                            <jre>
+                                <minVersion>1.8.0</minVersion>
+                                <opts>
+                                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
+                                </opts>
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>${project.version}.0.0</fileVersion>
+                                <txtFileVersion>${project.version}</txtFileVersion>
+                                <fileDescription>${project.description}</fileDescription>
+                                <copyright>Byte Break Studios LLC 2016</copyright>
+                                <productVersion>${project.version}.0.0</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>${project.name}</productName>
+                                <internalName>${project.name}</internalName>
+                                <originalFilename>${project.artifactId}-${project.version}.exe</originalFilename>
+                                <language>ENGLISH</language>
+                            </versionInfo>
+                            <messages>
+                                <startupErr>Could not start up</startupErr>
+                                <bundledJreErr>Bundled Jre error</bundledJreErr>
+                                <jreVersionErr>Incompatible Jre version error</jreVersionErr>
+                                <launcherErr>Launcher error</launcherErr>
+                                <!-- Used by console header only. -->
+                                <instanceAlreadyExistsMsg>Instance already exists</instanceAlreadyExistsMsg>
+                            </messages>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals><goal>single</goal></goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
