@@ -33,6 +33,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
     private MyGame game;
 
     private AbstractRoom room;
+    private AbstractRoom tempRoom = null; // for switching rooms
 
     public GameScreen(MyGame game){
         this.game = game;
@@ -53,6 +54,12 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (room != null) room.render(delta);
+        // this has to be done here to avoid concurrent modification errors
+        if (tempRoom != null){
+            if (room != null) room.dispose();
+            room = tempRoom;
+            tempRoom = null;
+        }
     }
 
     @Override
@@ -92,8 +99,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
 
     @Override
     public void setRoom(AbstractRoom room) {
-        if (this.room != null) this.room.dispose();
-        this.room = room;
+        this.tempRoom = room;
     }
 
     // ////////////////////////////////////
