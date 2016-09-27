@@ -8,7 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
-import com.bitdecay.blacknickel.room.DemoRoom;
+import com.bitdecay.blacknickel.room.AbstractRoom;
+import com.bitdecay.blacknickel.room.GenericRoom;
 import com.bitdecay.blacknickel.trait.ICanSetRoom;
 import com.bitdecay.blacknickel.trait.ICanSetScreen;
 import com.bitdecay.blacknickel.trait.IHasScreenSize;
@@ -31,13 +32,13 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
 
     private MyGame game;
 
-    private com.bitdecay.blacknickel.room.AbstractRoom room;
+    private AbstractRoom room;
 
     public GameScreen(MyGame game){
         this.game = game;
-        setRoom(new DemoRoom(this, LevelUtilities.loadLevel(Launcher.conf.getString("demoLevel"))));
+        setRoom(new GenericRoom(this, LevelUtilities.loadLevel(Launcher.conf.getString("demoLevel"))));
     }
-    public GameScreen(MyGame game, com.bitdecay.blacknickel.room.AbstractRoom room){
+    public GameScreen(MyGame game, AbstractRoom room){
         this.game = game;
         setRoom(room);
     }
@@ -90,7 +91,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
     }
 
     @Override
-    public void setRoom(com.bitdecay.blacknickel.room.AbstractRoom room) {
+    public void setRoom(AbstractRoom room) {
         if (this.room != null) this.room.dispose();
         this.room = room;
     }

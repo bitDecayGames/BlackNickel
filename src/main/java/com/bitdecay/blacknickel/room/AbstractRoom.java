@@ -156,4 +156,8 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
 
         gobs.cleanup();
     }
+
+    public GameScreen gameScreen(){
+        return gameScreen;
+    }
 }

@@ -66,7 +66,7 @@ public final class MyGameObjectFromConf {
             } catch (InvocationTargetException e){
                 err("(object: " + name + ") There was a problem creating " + className + " (Tip: your conf file is probably missing a key:value or the key is misspelled)", e.getCause());
             } catch (Exception e){
-                err("(object: " + name + ") General exception", e);
+                err("(object: " + name + ") General exception with " + className, e);
             }
         });
         obj.cleanup();
