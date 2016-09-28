@@ -22,8 +22,10 @@ public class GenericRoom extends AbstractRoom {
         new PossessionSystem(this);
         new ExitPossessionSystem(this);
         new NewRoomSystem(this);
+        new ScreenShakeSystem(this);
         new RespawnSystem(this, Integer.MIN_VALUE, Integer.MAX_VALUE, -1000, Integer.MAX_VALUE);
         new DespawnSystem(this, Integer.MIN_VALUE, Integer.MAX_VALUE, -1000, Integer.MAX_VALUE);
+        // drawables
         new ShapeDrawSystem(this);
         new DrawSystem(this);
         new RemovalSystem(this);
