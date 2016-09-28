@@ -36,12 +36,12 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
     private AbstractRoom tempRoom = null; // for switching rooms
 
     public GameScreen(MyGame game){
-        this.game = game;
-        setRoom(new GenericRoom(this, LevelUtilities.loadLevel(Launcher.conf.getString("demoLevel"))));
+        this(game, new GenericRoom(LevelUtilities.loadLevel(Launcher.conf.getString("demoLevel"))));
     }
     public GameScreen(MyGame game, AbstractRoom room){
         this.game = game;
         setRoom(room);
+        render(0); // need this to register the new room
     }
 
     @Override
@@ -100,6 +100,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
     @Override
     public void setRoom(AbstractRoom room) {
         this.tempRoom = room;
+        if (tempRoom != null) tempRoom.setGameScreen(this);
     }
 
     // ////////////////////////////////////

@@ -1,7 +1,6 @@
 package com.bitdecay.blacknickel.room;
 
 
-import com.bitdecay.blacknickel.screen.GameScreen;
 import com.bitdecay.blacknickel.system.*;
 import com.bitdecay.jump.level.Level;
 
@@ -10,8 +9,8 @@ import com.bitdecay.jump.level.Level;
  */
 public class GenericRoom extends AbstractRoom {
 
-    public GenericRoom(GameScreen gameScreen, Level level) {
-        super(gameScreen, level);
+    public GenericRoom(Level level) {
+        super(level);
 
         // systems must be added before game objects
         new InitializationSystem(this);

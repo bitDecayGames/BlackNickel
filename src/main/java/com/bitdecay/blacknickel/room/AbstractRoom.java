@@ -31,7 +31,7 @@ import java.util.List;
  */
 public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, ICanSetScreen, EditorHook, IDisposable {
 
-    protected final GameScreen gameScreen;
+    protected GameScreen gameScreen;
     public final SystemManager systemManager = new SystemManager();
     protected final MyGameObjects gobs = new MyGameObjects(systemManager);
     protected final List<ICleanup> cleanupables = Arrays.asList(systemManager, gobs);
@@ -44,9 +44,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     protected final BitWorld world = new BitWorld();
     protected Level level;
 
-    public AbstractRoom(GameScreen gameScreen, Level level){
-        this.gameScreen = gameScreen;
-
+    public AbstractRoom(Level level){
         camera.maxZoom = (float) Launcher.conf.getDouble("resolution.camera.maxZoom");
         camera.minZoom = (float) Launcher.conf.getDouble("resolution.camera.minZoom");
         camera.snapSpeed = (float) Launcher.conf.getDouble("resolution.camera.snapSpeed");
@@ -55,6 +53,13 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
         world.setGravity((float) Launcher.conf.getDouble("world.gravity.x"), (float) Launcher.conf.getDouble("world.gravity.y"));
 
         this.level = level;
+
+        setGameScreen(gameScreen);
+    }
+
+    public AbstractRoom setGameScreen(GameScreen gameScreen){
+        this.gameScreen = gameScreen;
+        return this;
     }
 
     public MyGameObjects getGameObjects(){

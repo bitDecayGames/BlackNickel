@@ -39,7 +39,7 @@ public class NewRoomSystem extends AbstractUpdatableSystem {
                 gobs.forEach(b -> {
                     if (checkForTriggerable(b) && overlap(a, b) && InputHelper.isKeyJustPressed(interactButtons)){
                         a.forEach(NewRoomComponent.class, c -> {
-                            room.gameScreen().setRoom(new GenericRoom(room.gameScreen(), LevelUtilities.loadLevel("src/main/resources/level/" + c.level() + ".level")));
+                            room.gameScreen().setRoom(new GenericRoom(LevelUtilities.loadLevel("src/main/resources/level/" + c.level() + ".level")));
                         });
                     }
                 });
