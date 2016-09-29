@@ -11,6 +11,7 @@ import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.room.GenericRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractUpdatableSystem;
 import com.bitdecay.blacknickel.util.InputHelper;
+import com.bitdecay.jump.level.Level;
 import com.bitdecay.jump.leveleditor.utils.LevelUtilities;
 
 import java.util.List;
@@ -39,7 +40,12 @@ public class NewRoomSystem extends AbstractUpdatableSystem {
                 gobs.forEach(b -> {
                     if (checkForTriggerable(b) && overlap(a, b) && InputHelper.isKeyJustPressed(interactButtons)){
                         a.forEach(NewRoomComponent.class, c -> {
-                            room.gameScreen().setRoom(new GenericRoom(LevelUtilities.loadLevel("src/main/resources/level/" + c.level() + ".level")));
+                            try {
+                                Level level = LevelUtilities.loadLevel("src/main/resources/level/" + c.level() + ".level");
+                                room.gameScreen().setRoom(new GenericRoom(level));
+                            } catch (Exception e){
+                                System.err.println("Could not set level to '" + c.level() + "'");
+                            }
                         });
                     }
                 });

@@ -1172,6 +1172,19 @@
           "oneway" : false
         } ] ],
         "otherObjects" : [ "java.util.HashMap", {
+          "bb00ced2-ec78-4489-9c41-33cd7956912b" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
+            "rect" : {
+              "xy" : {
+                "x" : 96.0,
+                "y" : 32.0
+              },
+              "width" : 20.0,
+              "height" : 30.0
+            },
+            "uuid" : "bb00ced2-ec78-4489-9c41-33cd7956912b",
+            "name" : "Door",
+            "level" : ""
+          } ],
           "3ea8fc1e-b1af-4776-b85e-1180d149f13b" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Shell",
             "rect" : {

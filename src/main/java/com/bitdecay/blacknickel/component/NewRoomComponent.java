@@ -15,6 +15,11 @@ public class NewRoomComponent extends AbstractComponent {
         level = conf.getString("level");
     }
 
+    public NewRoomComponent(MyGameObject obj, String level){
+        super(obj);
+        this.level = level;
+    }
+
     public String level(){
         return level;
     }

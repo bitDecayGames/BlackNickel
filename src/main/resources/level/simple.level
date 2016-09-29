@@ -693,6 +693,19 @@
               "height" : 18.0
             },
             "uuid" : "ea700ced-7a83-4593-8774-53ab771ec11e"
+          } ],
+          "18d1213f-cc98-4979-a139-198446a2c6e1" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
+            "rect" : {
+              "xy" : {
+                "x" : 48.0,
+                "y" : 16.0
+              },
+              "width" : 20.0,
+              "height" : 30.0
+            },
+            "uuid" : "18d1213f-cc98-4979-a139-198446a2c6e1",
+            "name" : "Door",
+            "level" : ""
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", { } ],
