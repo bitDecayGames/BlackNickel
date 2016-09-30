@@ -28,6 +28,7 @@ public class GenericRoom extends AbstractRoom {
         // drawables
         new ShapeDrawSystem(this);
         new DrawSystem(this);
+        new TextDrawSystem(this);
         new RemovalSystem(this);
 
 

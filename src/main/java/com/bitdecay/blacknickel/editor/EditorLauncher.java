@@ -14,8 +14,8 @@ public class EditorLauncher {
 
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = Launcher.conf.getInt("resolution.default.width");
-        config.height = Launcher.conf.getInt("resolution.default.height");
+        config.width = Launcher.conf.getInt("resolution.editor.width");
+        config.height = Launcher.conf.getInt("resolution.editor.height");
         config.title = Launcher.conf.getString("title");
         config.fullscreen = false;
 
