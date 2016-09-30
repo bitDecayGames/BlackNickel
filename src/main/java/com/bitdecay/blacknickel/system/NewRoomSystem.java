@@ -1,11 +1,11 @@
 package com.bitdecay.blacknickel.system;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
-import com.bitdecay.blacknickel.component.NewRoomComponent;
-import com.bitdecay.blacknickel.component.NewRoomTriggerableComponent;
-import com.bitdecay.blacknickel.component.PositionComponent;
-import com.bitdecay.blacknickel.component.SizeComponent;
+import com.bitdecay.blacknickel.component.*;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.room.GenericRoom;
@@ -30,6 +30,15 @@ public class NewRoomSystem extends AbstractUpdatableSystem {
 
     @Override
     protected boolean validateGob(MyGameObject gob) {
+        // if a new level object doesn't have a level associated, then it should be called out as an error
+        gob.forEach(NewRoomComponent.class, room -> {
+            if (! gob.hasComponent(TextComponent.class)) {
+                if (room.level() == null || room.level().isEmpty())
+                    new TextComponent(gob, "missing\nlevel", Color.RED.cpy(), 1f, new Vector2(0, 20)).addSelfToGameObject();
+                else if (! Gdx.files.classpath("level/" + room.level() + ".level").exists())
+                    new TextComponent(gob, "level\ndoesn't\nexist", Color.RED.cpy(), 1f, new Vector2(0, 30)).addSelfToGameObject();
+            }
+        });
         return checkForDoor(gob) || checkForTriggerable(gob);
     }
 

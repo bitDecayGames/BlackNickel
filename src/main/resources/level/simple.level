@@ -705,7 +705,7 @@
             },
             "uuid" : "18d1213f-cc98-4979-a139-198446a2c6e1",
             "name" : "Door",
-            "level" : ""
+            "level" : "shellTest"
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", { } ],

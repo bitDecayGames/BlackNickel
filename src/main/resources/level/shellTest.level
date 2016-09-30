@@ -1183,7 +1183,7 @@
             },
             "uuid" : "bb00ced2-ec78-4489-9c41-33cd7956912b",
             "name" : "Door",
-            "level" : ""
+            "level" : "simple"
           } ],
           "3ea8fc1e-b1af-4776-b85e-1180d149f13b" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Shell",
@@ -1208,18 +1208,6 @@
               "height" : 18.0
             },
             "uuid" : "65c32b86-3fa7-4568-ac1b-9e636253c93d"
-          } ],
-          "9f17b9b0-7a69-47f1-87f7-b746e41754e1" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
-            "name" : "DoorToSimple",
-            "rect" : {
-              "xy" : {
-                "x" : 128.0,
-                "y" : 32.0
-              },
-              "width" : 20.0,
-              "height" : 30.0
-            },
-            "uuid" : "9f17b9b0-7a69-47f1-87f7-b746e41754e1"
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", { } ],
