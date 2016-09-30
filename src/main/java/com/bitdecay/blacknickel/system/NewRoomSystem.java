@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * This system is in charge of updating the position and size component with data from the physics component
+ * This system is in charge of setting up the new room when a NewRoomComponent is interacted with
  */
 public class NewRoomSystem extends AbstractUpdatableSystem {
 
