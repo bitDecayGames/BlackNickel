@@ -70,6 +70,18 @@ public class MyGameObject implements ICleanup {
         return comp;
     }
 
+    /**
+     * This method does not actually remove the component.  It just marks the component as one to be removed before the next cycle.
+     */
+    public <T extends AbstractComponent> Optional<T> removeComponent(T componentRef){
+        if (components.contains(componentRef)) {
+            componentsToRemove.add(componentRef);
+            dirty = true;
+            return Optional.empty();
+        }
+        return Optional.of(componentRef);
+    }
+
     @Override
     public boolean isDirty() {
         return dirty;
