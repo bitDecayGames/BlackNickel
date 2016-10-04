@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- * This class loads resources that are contained within the jar.  I think it can be replaced with Gdx.files.classpath... maybe...
+ * This class loads resources that are contained within the jar.  This is ONLY for use when you are outside of the Gdx context.  If you are <b>within</b> the Gdx context then you can just use <code>Gdx.files.classpath(filePath)</code>
  */
 public final class Resources {
     private Resources(){}

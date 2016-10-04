@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
-import com.bitdecay.blacknickel.file.Resources;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.room.GenericRoom;
@@ -37,7 +36,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
     private AbstractRoom tempRoom = null; // for switching rooms
 
     public GameScreen(MyGame game){
-        this(game, new GenericRoom(FileUtils.loadFileAs(Level.class, Resources.getString(Launcher.conf.getString("demoLevel")))));
+        this(game, new GenericRoom(FileUtils.loadFileAs(Level.class, Gdx.files.classpath((Launcher.conf.getString("demoLevel"))).readString())));
     }
     public GameScreen(MyGame game, AbstractRoom room){
         this.game = game;
