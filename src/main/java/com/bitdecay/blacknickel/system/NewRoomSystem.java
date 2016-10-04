@@ -50,10 +50,10 @@ public class NewRoomSystem extends AbstractUpdatableSystem {
                     if (checkForTriggerable(b) && overlap(a, b) && InputHelper.isKeyJustPressed(interactButtons)){
                         a.forEach(NewRoomComponent.class, c -> {
                             try {
-                                Level level = LevelUtilities.loadLevel("src/main/resources/level/" + c.level() + ".level");
+                                Level level = LevelUtilities.loadLevel("level/" + c.level() + ".level");
                                 room.gameScreen().setRoom(new GenericRoom(level));
                             } catch (Exception e){
-                                System.err.println("Could not set level to '" + c.level() + "'");
+                                log.error("Could not set level to '" + c.level() + "'");
                             }
                         });
                     }

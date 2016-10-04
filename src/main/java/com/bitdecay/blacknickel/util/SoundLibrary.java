@@ -8,57 +8,54 @@ import com.bitdecay.blacknickel.Launcher;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigList;
 import com.typesafe.config.ConfigObject;
+import org.apache.log4j.Logger;
 
-import java.io.File;
 import java.util.HashMap;
 
 /**
  * SoundLibrary is now fully built and configured based on the location of files and the sounds.conf file.  Look at the /resources/conf/sounds.conf file to figure out how to change the volume for each individual sound effect and music.  If you don't enter a value into sounds.conf, a default value will be used.
  */
 public class SoundLibrary {
+    private static final Logger log = Logger.getLogger(SoundLibrary.class);
+
+    private static final String fxDir = Launcher.conf.getString("sounds.fxDir");
+    private static final float defaultFxVolume = (float) Launcher.conf.getDouble("sounds.defaultFxVolume");
+
+    private static final String musicDir = Launcher.conf.getString("sounds.musicDir");
+    private static final float defaultMusicVolume = (float) Launcher.conf.getDouble("sounds.defaultMusicVolume");
+
     private static final HashMap<String, SoundEffect> sounds = new HashMap<>();
     private static final HashMap<String, MusicEffect> musics = new HashMap<>();
+
 
     static {
         // ///////////////////////////
         // Sound Effects
         // ///////////////////////////
-        File fxDir = new File(Launcher.conf.getString("sounds.fxDir"));
-        float defaultFxVolume = (float) Launcher.conf.getDouble("sounds.defaultFxVolume");
-        // add all the fx files with a default volume
-        if (fxDir.isDirectory() && fxDir.exists()) for (File fxFile : fxDir.listFiles()) {
-            if (fxFile != null && fxFile.exists()){
-                sounds.put(new FileHandle(fxFile).nameWithoutExtension(), new SoundEffect(defaultFxVolume));
-            }
-        }
-        // now loop through the defined sounds and adjust their volume
+        // loop through the defined sounds and adjust their volume
         ConfigList fxs = Launcher.conf.getList("sounds.fx");
         fxs.forEach(configValue -> {
             if (configValue instanceof ConfigObject){
                 Config fx = ((ConfigObject) configValue).toConfig();
-                SoundEffect fxObj = getSound(fx.getString("name"));
-                if (fxObj != null) fxObj.volume = (float) fx.getDouble("volume");
+                String name = fx.getString("name");
+                float volume = defaultFxVolume;
+                if (fx.hasPath("volume")) volume = (float) fx.getDouble("volume");
+                sounds.put(name, new SoundEffect(volume));
             }
         });
 
         // ///////////////////////////
         // Music
         // ///////////////////////////
-        File musicDir = new File(Launcher.conf.getString("sounds.musicDir"));
-        float defaultMusicVolume = (float) Launcher.conf.getDouble("sounds.defaultMusicVolume");
-        // add all the music files with a default volume
-        if (musicDir.isDirectory() && musicDir.exists()) for (File musicFile : musicDir.listFiles()) {
-            if (musicFile != null && musicFile.exists()){
-                musics.put(new FileHandle(musicFile).nameWithoutExtension(), new MusicEffect(defaultMusicVolume));
-            }
-        }
-        // now loop through the defined sounds and adjust their volume
-        ConfigList musicsConf = Launcher.conf.getList("sounds.music");
-        musicsConf.forEach(configValue -> {
+        // loop through the defined musics and adjust their volume
+        ConfigList musicConf = Launcher.conf.getList("sounds.music");
+        musicConf.forEach(configValue -> {
             if (configValue instanceof ConfigObject){
                 Config music = ((ConfigObject) configValue).toConfig();
-                MusicEffect musicObj = getMusic(music.getString("name"));
-                if (musicObj != null) musicObj.volume = (float) music.getDouble("volume");
+                String name = music.getString("name");
+                float volume = defaultMusicVolume;
+                if (music.hasPath("volume")) volume = (float) music.getDouble("volume");
+                musics.put(name, new MusicEffect(volume));
             }
         });
     }
@@ -72,14 +69,19 @@ public class SoundLibrary {
     }
 
     private static SoundEffect getSound(String name) {
-        SoundEffect sound;
+        try {
+            SoundEffect sound;
 
-        sound = sounds.get(name);
-        if (sound.sound == null) {
-            sound.sound = Gdx.audio.newSound(Gdx.files.classpath("sound/fx/" + name + ".wav"));
+            sound = sounds.get(name);
+            if (sound == null) throw new RuntimeException("Could not find configured sound: " + name + ".  You must define it in the sounds.conf file.");
+            if (sound.sound == null) {
+                sound.sound = Gdx.audio.newSound(Gdx.files.classpath("sound/fx/" + name + ".wav"));
+            }
+
+            return sound;
+        } catch (Exception e){
+            throw new RuntimeException("Could not get sound: " + name, e);
         }
-
-        return sound;
     }
 
     public static synchronized Music playMusic(String name) {
@@ -92,19 +94,22 @@ public class SoundLibrary {
 
 
     private static MusicEffect getMusic(String name) {
-        MusicEffect music;
+        try {
+            MusicEffect music;
 
-        music = musics.get(name);
-        if (music.music == null) {
-            FileHandle musicFile = Gdx.files.classpath("sound/music/" + name + ".mp3");
-            if (!musicFile.exists()) {
-                musicFile = Gdx.files.classpath("sound/music/" + name + ".wav");
+            music = musics.get(name);
+            if (music == null) throw new RuntimeException("Could not find configured music: " + name + ". You must define it in the sounds.conf file.");
+            if (music.music == null) {
+                FileHandle musicFile = Gdx.files.classpath("sound/music/" + name + ".mp3");
+                if (!musicFile.exists()) musicFile = Gdx.files.classpath("sound/music/" + name + ".wav");
+                music.music = Gdx.audio.newMusic(musicFile);
+                musics.put(name, music);
             }
-            music.music = Gdx.audio.newMusic(musicFile);
-            musics.put(name, music);
-        }
 
-        return music;
+            return music;
+        } catch (Exception e){
+            throw new RuntimeException("Could not get music: " + name, e);
+        }
     }
 
     public static void stopMusic(String name) {
