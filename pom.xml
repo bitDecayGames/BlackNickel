@@ -10,13 +10,15 @@
     <groupId>com.bitdecay</groupId>
     <packaging>jar</packaging>
 
+    <description>Black nickel yo</description>
+
     <properties>
         <!-- TODO: put the actual main launcher class in here -->
         <mainClass>com.bitdecay.blacknickel.Launcher</mainClass>
 
         <!-- these will change based on what the current version of the tools are -->
         <jumpVersion>2.0</jumpVersion>
-        <animagicVersion>0.1-SNAPSHOT</animagicVersion>
+        <animagicVersion>1.0</animagicVersion>
 
         <!-- these probably shouldn't change much -->
         <gdxVersion>1.6.5</gdxVersion>

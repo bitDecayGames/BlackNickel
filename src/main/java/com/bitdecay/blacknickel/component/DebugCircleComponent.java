@@ -14,7 +14,7 @@ public class DebugCircleComponent extends AbstractComponent implements IShapeDra
     public final Color color;
     public final float radius;
 
-    private DebugCircleComponent(MyGameObject obj, Color color, float radius){
+    public DebugCircleComponent(MyGameObject obj, Color color, float radius){
         super(obj);
         this.color = color.cpy();
         this.radius = radius;

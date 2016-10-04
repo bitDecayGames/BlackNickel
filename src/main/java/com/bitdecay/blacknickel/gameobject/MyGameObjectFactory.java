@@ -4,6 +4,7 @@ import com.bitdecay.blacknickel.component.PositionComponent;
 import com.bitdecay.blacknickel.component.SizeComponent;
 import com.bitdecay.blacknickel.component.TileComponent;
 import com.bitdecay.blacknickel.editor.ConfBasedLevelObject;
+import com.bitdecay.blacknickel.editor.NewRoomLevelObject;
 import com.bitdecay.blacknickel.util.Tilesets;
 import com.bitdecay.jump.gdx.level.RenderableLevelObject;
 import com.bitdecay.jump.level.TileObject;
@@ -23,7 +24,11 @@ public final class MyGameObjectFactory {
     }
 
     public static List<RenderableLevelObject> allLevelObjects(){
-        return MyGameObjectFromConf.objectConfs().stream().map(config -> new ConfBasedLevelObject(config.getString("name"))).map(RenderableLevelObject.class::cast).collect(Collectors.toList());
+        return MyGameObjectFromConf.objectConfs().stream().map(config -> {
+            String name = config.getString("name");
+            if (name.equalsIgnoreCase("door")) return new NewRoomLevelObject();
+            else return new ConfBasedLevelObject(config.getString("name"));
+        }).map(RenderableLevelObject.class::cast).collect(Collectors.toList());
     }
 
     public static MyGameObject tile(TileObject tile){
