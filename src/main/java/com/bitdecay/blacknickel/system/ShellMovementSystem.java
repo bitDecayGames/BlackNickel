@@ -26,8 +26,8 @@ public class ShellMovementSystem extends AbstractForEachUpdatableSystem {
                     if (smc.direction == 0) smc.direction = 1;
                     if (phy.body().velocity.x == 0){
                         smc.direction *= -1;
-                        phy.body().velocity.x = smc.direction * smc.speed;
                     }
+                    phy.body().velocity.x = smc.direction * smc.speed;
                 });
             }
         });

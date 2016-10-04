@@ -144,6 +144,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
         gobs.clear();
 
         world.setLevel(level);
+        world.resetTimePassed();
         this.level = level;
 
         // generate game objects from level tiles
