@@ -11,6 +11,7 @@ import com.typesafe.config.ConfigObject;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.function.BiConsumer;
 
 /**
  * SoundLibrary is now fully built and configured based on the location of files and the sounds.conf file.  Look at the /resources/conf/sounds.conf file to figure out how to change the volume for each individual sound effect and music.  If you don't enter a value into sounds.conf, a default value will be used.
@@ -29,33 +30,22 @@ public class SoundLibrary {
 
 
     static {
-        // ///////////////////////////
-        // Sound Effects
-        // ///////////////////////////
         // loop through the defined sounds and adjust their volume
-        ConfigList fxs = Launcher.conf.getList("sounds.fx");
-        fxs.forEach(configValue -> {
-            if (configValue instanceof ConfigObject){
-                Config fx = ((ConfigObject) configValue).toConfig();
-                String name = fx.getString("name");
-                float volume = defaultFxVolume;
-                if (fx.hasPath("volume")) volume = (float) fx.getDouble("volume");
-                sounds.put(name, new SoundEffect(volume));
-            }
-        });
-
-        // ///////////////////////////
-        // Music
-        // ///////////////////////////
+        loadSounds("sounds.fx", defaultFxVolume, (name, volume) -> sounds.put(name, new SoundEffect(volume)));
         // loop through the defined musics and adjust their volume
-        ConfigList musicConf = Launcher.conf.getList("sounds.music");
-        musicConf.forEach(configValue -> {
+        loadSounds("sounds.music", defaultMusicVolume, (name, volume) -> musics.put(name, new MusicEffect(volume)));
+    }
+
+    private static void loadSounds(String confLocation, float defaultVolume, BiConsumer<String, Float> func){
+        ConfigList conf = Launcher.conf.getList(confLocation);
+        conf.forEach(configValue -> {
             if (configValue instanceof ConfigObject){
-                Config music = ((ConfigObject) configValue).toConfig();
-                String name = music.getString("name");
-                float volume = defaultMusicVolume;
-                if (music.hasPath("volume")) volume = (float) music.getDouble("volume");
-                musics.put(name, new MusicEffect(volume));
+                Config sound = ((ConfigObject) configValue).toConfig();
+                String name = sound.getString("name");
+                float volume = defaultVolume;
+                if (sound.hasPath("volume")) volume = (float) sound.getDouble("volume");
+                log.debug("Loaded sound: " + confLocation + "." + name + "(" + volume + ")");
+                func.accept(name, volume);
             }
         });
     }
