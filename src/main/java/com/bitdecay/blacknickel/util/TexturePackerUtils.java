@@ -1,6 +1,7 @@
 package com.bitdecay.blacknickel.util;
 
 import com.bytebreakstudios.animagic.texture.AnimagicTexturePacker;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -8,19 +9,21 @@ import java.io.File;
  * Decides whether or not to pack textures based on the lastModified date of folder and files within the resources/img/packable folder
  */
 public class TexturePackerUtils {
+    private static final Logger log = Logger.getLogger(TexturePackerUtils.class);
 
     private TexturePackerUtils(){}
 
     public static void pack(){
         int needToPackResult = needToPack();
         if (needToPackResult != 0) {
-            System.out.println("Need to pack images");
+            log.debug("Need to pack images");
+            // needs to reference the original files, not the files in the jar (hence the src/main/resources)
             AnimagicTexturePacker.pack(new File("src/main/resources/img/packable"), new File("src/main/resources/img/packed"));
             if (needToPackResult < 0){
-                System.err.println("NOTE: It was detected that this is the first time you've run the packer.  You will need to re-run the game for the packed files to appear.  Exiting now.");
+                log.warn("NOTE: It was detected that this is the first time you've run the packer.  You will need to re-run the game for the packed files to appear.  Exiting now.");
                 System.exit(0);
             }
-        } else System.out.println("Did not need to pack images");
+        } else log.debug("Did not need to pack images");
     }
 
     /**
@@ -28,7 +31,7 @@ public class TexturePackerUtils {
      * @return 0 for false, > 0 for true, < 0 for uh oh
      */
     private static int needToPack(){
-        File atlasFile = new File("src/main/resources/img/packed/main.ATLAS");
+        File atlasFile = new File("src/main/resources/img/packed/main.atlas");
         if (!atlasFile.exists()) return -1;
         long atlasFileModifiedDate = atlasFile.lastModified();
 
