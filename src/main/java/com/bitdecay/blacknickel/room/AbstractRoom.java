@@ -9,6 +9,7 @@ import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
 import com.bitdecay.blacknickel.camera.FollowOrthoCamera;
 import com.bitdecay.blacknickel.component.NewRoomComponent;
+import com.bitdecay.blacknickel.component.UuidComponent;
 import com.bitdecay.blacknickel.editor.NewRoomLevelObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
@@ -160,13 +161,10 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
         // generate game objects from renderable level objects
         level.layers.layers.forEach((index, layer) -> {
             layer.otherObjects.forEach((uuid, levelObject) -> {
-                if (levelObject.name().equalsIgnoreCase(NewRoomLevelObject.NAME)){
-                    MyGameObject door = MyGameObjectFactory.objectFromConf(NewRoomLevelObject.NAME, levelObject.rect.xy.x, levelObject.rect.xy.y);
-                    door.addComponent(new NewRoomComponent(door, ((NewRoomLevelObject)levelObject).level));
-                    gobs.add(door);
-                } else {
-                    gobs.add(MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y));
-                }
+                MyGameObject gob = MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y);
+                gob.addComponent(new UuidComponent(gob, levelObject.uuid));
+                if (levelObject.name().equalsIgnoreCase(NewRoomLevelObject.NAME)) gob.addComponent(new NewRoomComponent(gob, ((NewRoomLevelObject)levelObject).level));
+                gobs.add(gob);
             });
         });
 
