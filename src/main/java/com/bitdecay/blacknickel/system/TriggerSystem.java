@@ -6,7 +6,7 @@ import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractSystem;
 
 /**
- * This system will remove objects that have the RemoveNowComponent and call the remove method on any components in that gob with the IRemoveable interface.
+ * This system is responsible for triggering and hooking up triggers to triggerees
  */
 public class TriggerSystem extends AbstractSystem {
     public TriggerSystem(AbstractRoom room) {
