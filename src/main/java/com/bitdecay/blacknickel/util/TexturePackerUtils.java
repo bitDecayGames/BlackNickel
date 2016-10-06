@@ -13,7 +13,7 @@ public class TexturePackerUtils {
 
     private TexturePackerUtils(){}
 
-    public static void pack(){
+    public static boolean pack(){
         int needToPackResult = needToPack();
         if (needToPackResult != 0) {
             log.debug("Need to pack images");
@@ -23,7 +23,11 @@ public class TexturePackerUtils {
                 log.warn("NOTE: It was detected that this is the first time you've run the packer.  You will need to re-run the game for the packed files to appear.  Exiting now.");
                 System.exit(0);
             }
-        } else log.debug("Did not need to pack images");
+            return true;
+        } else {
+            log.debug("Did not need to pack images");
+            return false;
+        }
     }
 
     /**
