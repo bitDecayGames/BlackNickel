@@ -2,7 +2,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- TODO: enter the project name and version -->
     <artifactId>blacknickel</artifactId>
     <name>Black Nickel</name>
     <version>1.0</version>
@@ -13,7 +12,6 @@
     <description>Black nickel yo</description>
 
     <properties>
-        <!-- TODO: put the actual main launcher class in here -->
         <mainClass>com.bitdecay.blacknickel.Launcher</mainClass>
 
         <!-- these will change based on what the current version of the tools are -->
