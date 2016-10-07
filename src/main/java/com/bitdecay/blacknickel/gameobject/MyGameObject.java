@@ -29,7 +29,7 @@ public class MyGameObject implements ICleanup {
         return components.stream().filter(componentClass::isInstance).findFirst().isPresent();
     }
 
-    public <T extends AbstractComponent> Optional<T> getComponent(Class<T> componentClass){
+    public <T> Optional<T> getComponent(Class<T> componentClass){
         return components.stream().filter(componentClass::isInstance).findFirst().map(componentClass::cast);
     }
 

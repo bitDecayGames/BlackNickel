@@ -46,31 +46,36 @@ public final class MyGameObjectFromConf {
             }
         }).get()).addSelfToGameObject();
         List<Config> componentsList = componentConfigListForConfig(conf);
-        componentsList.forEach(componentConf -> {
-            String className = "com.bitdecay.blacknickel.component." + componentConf.getString("name") + "Component";
-            try {
-                Class componentClass = Class.forName(className);
-                try {
-                    Constructor<? extends AbstractComponent> componentConstructorWithConf = componentClass.getConstructor(MyGameObject.class, Config.class);
-                    componentConstructorWithConf.newInstance(obj, componentConf).addSelfToGameObject();
-                }  catch (NoSuchMethodException a) {
-                    try {
-                        Constructor<? extends AbstractComponent> componentConstructor = componentClass.getConstructor(MyGameObject.class);
-                        componentConstructor.newInstance(obj).addSelfToGameObject();
-                    } catch (NoSuchMethodException b) {
-                        err("(object: " + name + ") Could not construct component with name: " + className + " (Tip: look in the component class, there must be a constructor that takes only a MyGameObject, or a constructor that takes a MyGameObject and a Config)");
-                    }
-                }
-            } catch (ClassNotFoundException e) {
-                err("(object: " + name + ") Could not find class with name: " + className);
-            } catch (InvocationTargetException e){
-                err("(object: " + name + ") There was a problem creating " + className + " (Tip: your conf file is probably missing a key:value or the key is misspelled)", e.getCause());
-            } catch (Exception e){
-                err("(object: " + name + ") General exception with " + className, e);
-            }
-        });
+        componentsList.forEach(componentConf -> componentFromConf(obj, componentConf).addSelfToGameObject());
         obj.cleanup();
         return obj;
+    }
+
+    public static AbstractComponent componentFromConf(MyGameObject obj, Config conf){
+        String name = conf.getString("name");
+        String className = "com.bitdecay.blacknickel.component." + name + "Component";
+        try {
+            Class componentClass = Class.forName(className);
+            try {
+                Constructor<? extends AbstractComponent> componentConstructorWithConf = componentClass.getConstructor(MyGameObject.class, Config.class);
+                return componentConstructorWithConf.newInstance(obj, conf);
+            }  catch (NoSuchMethodException a) {
+                try {
+                    Constructor<? extends AbstractComponent> componentConstructor = componentClass.getConstructor(MyGameObject.class);
+                    return componentConstructor.newInstance(obj);
+                } catch (NoSuchMethodException b) {
+                    err("(object: " + name + ") Could not construct component with name: " + className + " (Tip: look in the component class, there must be a constructor that takes only a MyGameObject, or a constructor that takes a MyGameObject and a Config)");
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            err("(object: " + name + ") Could not find class with name: " + className);
+        } catch (InvocationTargetException e){
+            err("(object: " + name + ") There was a problem creating " + className + " (Tip: your conf file is probably missing a key:value or the key is misspelled)", e.getCause());
+        } catch (Exception e){
+            err("(object: " + name + ") General exception with " + className, e);
+        }
+        // should never get this far...
+        return null;
     }
 
     private static Optional<Config> configForObjectName(String name){

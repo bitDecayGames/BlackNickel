@@ -13,8 +13,10 @@ public class UuidComponent extends AbstractComponent {
         this.uuid = uuid;
     }
 
+    public String uuid() { return uuid; }
+
     @Override
     public String toString() {
-        return this.uuid;
+        return uuid();
     }
 }

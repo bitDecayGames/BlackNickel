@@ -1,6 +1,6 @@
 package com.bitdecay.blacknickel.system;
 
-import com.bitdecay.blacknickel.component.TriggerComponent;
+import com.bitdecay.blacknickel.component.trigger.TriggerComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractSystem;
