@@ -17,6 +17,11 @@ public class StaticImageComponent extends DrawableComponent {
         image = MyGame.ATLAS.findRegion(conf.getString("path"));
     }
 
+    public StaticImageComponent(MyGameObject obj, String path){
+        super(obj);
+        image = MyGame.ATLAS.findRegion(path);
+    }
+
     @Override
     public TextureRegion image() {
         return image;

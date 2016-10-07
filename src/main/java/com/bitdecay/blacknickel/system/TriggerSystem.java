@@ -1,6 +1,6 @@
 package com.bitdecay.blacknickel.system;
 
-import com.bitdecay.blacknickel.component.trigger.TriggerComponent;
+import com.bitdecay.blacknickel.component.TriggerComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractSystem;
@@ -15,7 +15,7 @@ public class TriggerSystem extends AbstractSystem {
 
     @Override
     protected boolean validateGob(MyGameObject gob) {
-        // logic goes here because this method is only called when gobs changes
+        // TODO: this logic needs to change.  I only want to execute the trigger when some condition is met (ie. stepping on it)
         gob.forEach(TriggerComponent.class, trigger -> {
             trigger.execute();
             gob.removeComponent(trigger);

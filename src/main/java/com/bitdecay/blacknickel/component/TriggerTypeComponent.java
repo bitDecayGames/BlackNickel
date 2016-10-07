@@ -1,6 +1,5 @@
-package com.bitdecay.blacknickel.component.trigger;
+package com.bitdecay.blacknickel.component;
 
-import com.bitdecay.blacknickel.component.AbstractComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.typesafe.config.Config;
 
@@ -18,6 +17,8 @@ public class TriggerTypeComponent extends AbstractComponent {
     public TriggerTypeComponent(MyGameObject obj, Config conf){
         this(obj, conf.getString("type"));
     }
+
+    public String type(){ return type; }
 
     @Override
     public String toString() {

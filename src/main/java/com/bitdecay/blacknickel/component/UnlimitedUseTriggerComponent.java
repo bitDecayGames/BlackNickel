@@ -1,4 +1,4 @@
-package com.bitdecay.blacknickel.component.trigger;
+package com.bitdecay.blacknickel.component;
 
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 
