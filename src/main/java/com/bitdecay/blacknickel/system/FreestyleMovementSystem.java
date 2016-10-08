@@ -1,7 +1,6 @@
 package com.bitdecay.blacknickel.system;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.FreestyleMovementComponent;
 import com.bitdecay.blacknickel.component.PhysicsComponent;
@@ -40,15 +39,17 @@ public class FreestyleMovementSystem extends AbstractForEachUpdatableSystem {
     @Override
     protected void forEach(float delta, MyGameObject gob) {
         gob.forEach(FreestyleMovementComponent.class, fmc -> {
-            Vector2 movement = new Vector2();
+            BitPoint movement = new BitPoint();
             if (isPressed("up")) movement.add(0, 1);
             if (isPressed("down")) movement.add(0, -1);
             if (isPressed("right")) movement.add(1, 0);
             if (isPressed("left")) movement.add(-1, 0);
             gob.forEach(PhysicsComponent.class, phy -> {
                 if (movement.len() > 0) {
-                    movement.nor().scl(fmc.speed);
-                    phy.body().velocity = new BitPoint(movement.x, movement.y);
+                    BitPoint vel = new BitPoint(phy.body().velocity);
+                    vel.add(movement.normalize().scale(fmc.speed / 10f));
+                    if (vel.len() > fmc.speed) phy.body().velocity = vel.normalize().scale(fmc.speed);
+                    else phy.body().velocity = vel;
                 } else phy.body().velocity = phy.body().velocity.scale(fmc.friction);
             });
         });

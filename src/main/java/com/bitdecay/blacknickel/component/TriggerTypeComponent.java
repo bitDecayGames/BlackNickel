@@ -8,17 +8,25 @@ import com.typesafe.config.Config;
  */
 public class TriggerTypeComponent extends AbstractComponent {
     private String type;
+    private int uses = -1;
 
-    public TriggerTypeComponent(MyGameObject obj, String type){
+    public TriggerTypeComponent(MyGameObject obj, String type, int uses){
         super(obj);
         this.type = type;
+        this.uses = uses;
+    }
+
+    public TriggerTypeComponent(MyGameObject obj, String type){
+        this(obj, type, -1);
     }
 
     public TriggerTypeComponent(MyGameObject obj, Config conf){
-        this(obj, conf.getString("type"));
+        this(obj, conf.getString("type"), conf.hasPath("uses") ? conf.getInt("uses") : -1);
     }
 
     public String type(){ return type; }
+
+    public int uses(){ return uses; }
 
     @Override
     public String toString() {
