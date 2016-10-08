@@ -13,13 +13,9 @@ public class TriggerFactory {
         target.getComponent(TriggerableComponent.class).ifPresent(triggerableComponent -> {
             source.forEach(TriggerTypeComponent.class, triggerTypeComponent -> {
                 switch (triggerTypeComponent.type().toLowerCase()){
-                    case "single":
+                    case "overlap":
                         log.debug("Created single trigger");
-                        new SingleUseTriggerComponent(source, triggerableComponent).addSelfToGameObject();
-                        break;
-                    case "unlimited":
-                        log.debug("Created unlimited trigger");
-                        new UnlimitedUseTriggerComponent(source, triggerableComponent).addSelfToGameObject();
+                        new OverlapTriggerComponent(source, triggerableComponent).addSelfToGameObject();
                         break;
                     default:
                         log.debug("Default trigger type reached");

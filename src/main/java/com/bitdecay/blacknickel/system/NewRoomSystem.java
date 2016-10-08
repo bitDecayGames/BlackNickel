@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.*;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
+import com.bitdecay.blacknickel.gameobject.MyGameObjectUtils;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.room.GenericRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractUpdatableSystem;
@@ -47,7 +48,7 @@ public class NewRoomSystem extends AbstractUpdatableSystem {
         gobs.forEach(a -> {
             if (checkForDoor(a)){
                 gobs.forEach(b -> {
-                    if (checkForTriggerable(b) && overlap(a, b) && InputHelper.isKeyJustPressed(interactButtons)){
+                    if (checkForTriggerable(b) && MyGameObjectUtils.overlap(a, b) && InputHelper.isKeyJustPressed(interactButtons)){
                         a.forEach(NewRoomComponent.class, c -> {
                             try {
                                 Level level = FileUtils.loadFileAs(Level.class, Gdx.files.classpath("level/" + c.level() + ".level").readString());
@@ -68,21 +69,5 @@ public class NewRoomSystem extends AbstractUpdatableSystem {
 
     private boolean checkForTriggerable(MyGameObject gob){
         return gob.hasComponents(NewRoomTriggerableComponent.class, SizeComponent.class, PositionComponent.class);
-    }
-
-    private boolean overlap(MyGameObject a, MyGameObject b){
-        return a.getComponent(SizeComponent.class).flatMap(sizeA -> a.getComponent(PositionComponent.class).flatMap(posA -> b.getComponent(SizeComponent.class).flatMap(sizeB -> b.getComponent(PositionComponent.class).map(posB -> {
-            float aTop = posA.y + sizeA.h;
-            float aBot = posA.y;
-            float aLeft = posA.x;
-            float aRight = posA.x + sizeA.w;
-
-            float bTop = posB.y + sizeB.h;
-            float bBot = posB.y;
-            float bLeft = posB.x;
-            float bRight = posB.x + sizeB.w;
-
-            return aLeft < bRight && aRight > bLeft && aTop > bBot && aBot < bTop;
-        })))).orElse(false);
     }
 }
