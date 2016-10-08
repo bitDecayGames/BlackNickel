@@ -29,7 +29,7 @@ public class MyGameObject implements ICleanup {
         return components.stream().filter(componentClass::isInstance).findFirst().isPresent();
     }
 
-    public <T extends AbstractComponent> Optional<T> getComponent(Class<T> componentClass){
+    public <T> Optional<T> getComponent(Class<T> componentClass){
         return components.stream().filter(componentClass::isInstance).findFirst().map(componentClass::cast);
     }
 
@@ -68,6 +68,18 @@ public class MyGameObject implements ICleanup {
             dirty = true;
         }
         return comp;
+    }
+
+    /**
+     * This method does not actually remove the component.  It just marks the component as one to be removed before the next cycle.
+     */
+    public <T extends AbstractComponent> Optional<T> removeComponent(T componentRef){
+        if (components.contains(componentRef)) {
+            componentsToRemove.add(componentRef);
+            dirty = true;
+            return Optional.empty();
+        }
+        return Optional.of(componentRef);
     }
 
     @Override

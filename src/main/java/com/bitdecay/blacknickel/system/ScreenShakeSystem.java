@@ -19,7 +19,7 @@ public class ScreenShakeSystem extends AbstractUpdatableSystem {
         // logic goes here because this method is only called when gobs changes
         gob.forEach(ScreenShakeOnCreateComponent.class, shake -> {
             room.camera.shake(shake.duration());
-            gob.removeComponent(ScreenShakeOnCreateComponent.class); // only happens once per component
+            gob.removeComponent(shake); // only happens once per component
         });
         return gob.hasComponent(ScreenRumbleComponent.class);
     }

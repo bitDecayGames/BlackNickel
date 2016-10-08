@@ -9,6 +9,8 @@ import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
 import com.bitdecay.blacknickel.camera.FollowOrthoCamera;
 import com.bitdecay.blacknickel.component.NewRoomComponent;
+import com.bitdecay.blacknickel.component.TriggerFactory;
+import com.bitdecay.blacknickel.component.UuidComponent;
 import com.bitdecay.blacknickel.editor.NewRoomLevelObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
@@ -24,15 +26,19 @@ import com.bitdecay.jump.level.Level;
 import com.bitdecay.jump.level.TileObject;
 import com.bitdecay.jump.leveleditor.EditorHook;
 import com.bitdecay.jump.leveleditor.render.LibGDXWorldRenderer;
+import org.apache.log4j.Logger;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The room object is an added layer to the GameScreen class.  Instead of having all of the game logic reside in the GameScreen, it now will reside in the AbstractRoom and the individual room implementations.  Think of it like: you have one room for each level in the game and one room for each boss fight in the game.  The abstract room takes care of all the updating and drawing of everything.  However, if you have special requirements, you can always override the update or draw methods.  Just make sure to call super.update() somewhere in your override.  Several configuration values are set at the top of this class using the conf files in resources/conf.  Each room is separate of every other room so you need to go through the initialization each time you create a new room.  The reason for this is to limit cross talk.  We don't want bugs that span multiple rooms...  That would make it very difficult to debug.
  */
 public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, ICanSetScreen, EditorHook, IDisposable {
+
+    protected final Logger log;
 
     protected GameScreen gameScreen;
     public final SystemManager systemManager = new SystemManager();
@@ -48,6 +54,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     protected Level level;
 
     public AbstractRoom(Level level){
+        log = Logger.getLogger(this.getClass());
         camera.maxZoom = (float) Launcher.conf.getDouble("resolution.camera.maxZoom");
         camera.minZoom = (float) Launcher.conf.getDouble("resolution.camera.minZoom");
         camera.snapSpeed = (float) Launcher.conf.getDouble("resolution.camera.snapSpeed");
@@ -160,16 +167,21 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
         // generate game objects from renderable level objects
         level.layers.layers.forEach((index, layer) -> {
             layer.otherObjects.forEach((uuid, levelObject) -> {
-                if (levelObject.name().equalsIgnoreCase(NewRoomLevelObject.NAME)){
-                    MyGameObject door = MyGameObjectFactory.objectFromConf(NewRoomLevelObject.NAME, levelObject.rect.xy.x, levelObject.rect.xy.y);
-                    door.addComponent(new NewRoomComponent(door, ((NewRoomLevelObject)levelObject).level));
-                    gobs.add(door);
-                } else {
-                    gobs.add(MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y));
-                }
+                MyGameObject gob = MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y);
+                gob.addComponent(new UuidComponent(gob, levelObject.uuid));
+                if (levelObject.name().equalsIgnoreCase(NewRoomLevelObject.NAME)) gob.addComponent(new NewRoomComponent(gob, ((NewRoomLevelObject)levelObject).level));
+                gobs.add(gob);
             });
         });
+        // actually does the add for each gob to the list
+        gobs.cleanup();
 
+        level.layers.layers.forEach((index, layer) -> layer.triggers.forEach((s, triggerObject) -> {
+            Optional<MyGameObject> source = gobs.findWith(UuidComponent.class, uuidComponent -> uuidComponent.uuid().equalsIgnoreCase(triggerObject.triggerer.uuid));
+            Optional<MyGameObject> target = gobs.findWith(UuidComponent.class, uuidComponent -> uuidComponent.uuid().equalsIgnoreCase(triggerObject.triggeree.uuid));
+            if (source.isPresent() && target.isPresent()) TriggerFactory.setupTrigger(source.get(), target.get());
+        }));
+        // refreshes any systems relying on triggers
         gobs.cleanup();
     }
 

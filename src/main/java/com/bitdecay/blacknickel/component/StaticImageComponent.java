@@ -11,11 +11,21 @@ import com.typesafe.config.Config;
 public class StaticImageComponent extends DrawableComponent {
 
     private TextureRegion image;
+    private String path;
 
     public StaticImageComponent(MyGameObject obj, Config conf) {
         super(obj);
-        image = MyGame.ATLAS.findRegion(conf.getString("path"));
+        path = conf.getString("path");
+        image = MyGame.ATLAS.findRegion(path);
     }
+
+    public StaticImageComponent(MyGameObject obj, String path){
+        super(obj);
+        this.path = path;
+        image = MyGame.ATLAS.findRegion(path);
+    }
+
+    public String path(){ return path; }
 
     @Override
     public TextureRegion image() {

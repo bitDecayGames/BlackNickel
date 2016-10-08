@@ -40,9 +40,9 @@ public class ExitPossessionSystem extends AbstractUpdatableSystem {
                             });
                         });
                         possessableComponent.possessor.removeComponent(RemoveNowComponent.class);
-                        new TimerComponent(possessableComponent.possessor, 0.1f, possessor -> {
+                        new TimerComponent(possessableComponent.possessor, 0.1f, (possessor, timer) -> {
                             possessor.addComponent(UnderControlComponent.class);
-                            possessor.removeComponent(TimerComponent.class);
+                            possessor.removeComponent(timer);
                         }).addSelfToGameObject();
                         room.getGameObjects().add(possessableComponent.possessor);
 
