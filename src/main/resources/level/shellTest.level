@@ -1197,6 +1197,19 @@
             },
             "uuid" : "3ea8fc1e-b1af-4776-b85e-1180d149f13b"
           } ],
+          "44ccbec4-8969-4f25-bd14-77a2cafb64fa" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
+            "rect" : {
+              "xy" : {
+                "x" : -48.0,
+                "y" : 32.0
+              },
+              "width" : 20.0,
+              "height" : 30.0
+            },
+            "uuid" : "44ccbec4-8969-4f25-bd14-77a2cafb64fa",
+            "name" : "Door",
+            "level" : "triggerTest"
+          } ],
           "65c32b86-3fa7-4568-ac1b-9e636253c93d" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Ghost",
             "rect" : {

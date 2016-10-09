@@ -682,17 +682,30 @@
           "oneway" : false
         } ] ],
         "otherObjects" : [ "java.util.HashMap", {
-          "ea700ced-7a83-4593-8774-53ab771ec11e" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+          "75523b9d-5fd0-4985-880c-6eefef809144" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Ghost",
             "rect" : {
               "xy" : {
-                "x" : -144.0,
-                "y" : 32.0
+                "x" : -16.0,
+                "y" : 16.0
               },
               "width" : 13.0,
               "height" : 18.0
             },
-            "uuid" : "ea700ced-7a83-4593-8774-53ab771ec11e"
+            "uuid" : "75523b9d-5fd0-4985-880c-6eefef809144"
+          } ],
+          "6ee83b71-9e6c-4eda-a314-1a3a8471f2fa" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
+            "rect" : {
+              "xy" : {
+                "x" : -80.0,
+                "y" : 16.0
+              },
+              "width" : 20.0,
+              "height" : 30.0
+            },
+            "uuid" : "6ee83b71-9e6c-4eda-a314-1a3a8471f2fa",
+            "name" : "Door",
+            "level" : "shellTest"
           } ],
           "18d1213f-cc98-4979-a139-198446a2c6e1" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
             "rect" : {
@@ -705,7 +718,7 @@
             },
             "uuid" : "18d1213f-cc98-4979-a139-198446a2c6e1",
             "name" : "Door",
-            "level" : "shellTest"
+            "level" : "weird_glitch_level"
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", { } ],

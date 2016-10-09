@@ -920,6 +920,30 @@
           "oneway" : false
         } ] ],
         "otherObjects" : [ "java.util.HashMap", {
+          "65c32b86-3fa7-4568-ac1b-9e636253c93d" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+            "name" : "Ghost",
+            "rect" : {
+              "xy" : {
+                "x" : -32.0,
+                "y" : 32.0
+              },
+              "width" : 13.0,
+              "height" : 18.0
+            },
+            "uuid" : "65c32b86-3fa7-4568-ac1b-9e636253c93d"
+          } ],
+          "47206cb5-0942-42e1-9c6f-369c1481c953" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+            "name" : "ActivationLever",
+            "rect" : {
+              "xy" : {
+                "x" : 16.0,
+                "y" : -32.0
+              },
+              "width" : 10.0,
+              "height" : 10.0
+            },
+            "uuid" : "47206cb5-0942-42e1-9c6f-369c1481c953"
+          } ],
           "d6544c06-7eea-462f-830c-454a1fd0cbbf" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Lever",
             "rect" : {
@@ -944,17 +968,18 @@
             },
             "uuid" : "9a4b7fa1-edbf-4a85-a750-965ca25fd1b5"
           } ],
-          "65c32b86-3fa7-4568-ac1b-9e636253c93d" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
-            "name" : "Ghost",
+          "0589be9e-e169-45dc-8467-f2e1ccc18777" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
             "rect" : {
               "xy" : {
-                "x" : -32.0,
+                "x" : 112.0,
                 "y" : 32.0
               },
-              "width" : 13.0,
-              "height" : 18.0
+              "width" : 20.0,
+              "height" : 30.0
             },
-            "uuid" : "65c32b86-3fa7-4568-ac1b-9e636253c93d"
+            "uuid" : "0589be9e-e169-45dc-8467-f2e1ccc18777",
+            "name" : "Door",
+            "level" : "shellTest"
           } ],
           "c28b7926-36ad-4802-b2ae-678a12b9ac4f" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Lightbulb",
@@ -968,20 +993,56 @@
             },
             "uuid" : "c28b7926-36ad-4802-b2ae-678a12b9ac4f"
           } ],
-          "47206cb5-0942-42e1-9c6f-369c1481c953" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
-            "name" : "ActivationLever",
+          "72048ee9-32de-41e8-b7af-c2e23e6a9994" : [ "com.bitdecay.blacknickel.editor.NewRoomLevelObject", {
             "rect" : {
               "xy" : {
-                "x" : 16.0,
-                "y" : -32.0
+                "x" : -64.0,
+                "y" : 32.0
               },
-              "width" : 10.0,
-              "height" : 10.0
+              "width" : 20.0,
+              "height" : 30.0
             },
-            "uuid" : "47206cb5-0942-42e1-9c6f-369c1481c953"
+            "uuid" : "72048ee9-32de-41e8-b7af-c2e23e6a9994",
+            "name" : "Door",
+            "level" : "weird_glitch_level"
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", {
+          "57451b81-dbb0-4622-a454-170cf7d0d87d" : {
+            "rect" : {
+              "xy" : {
+                "x" : 21.0,
+                "y" : -27.0
+              },
+              "width" : 62.5,
+              "height" : 30.5
+            },
+            "uuid" : "57451b81-dbb0-4622-a454-170cf7d0d87d",
+            "triggerer" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+              "name" : "ActivationLever",
+              "rect" : {
+                "xy" : {
+                  "x" : 16.0,
+                  "y" : -32.0
+                },
+                "width" : 10.0,
+                "height" : 10.0
+              },
+              "uuid" : "47206cb5-0942-42e1-9c6f-369c1481c953"
+            } ],
+            "triggeree" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+              "name" : "Lightbulb",
+              "rect" : {
+                "xy" : {
+                  "x" : 80.0,
+                  "y" : 0.0
+                },
+                "width" : 7.0,
+                "height" : 7.0
+              },
+              "uuid" : "c28b7926-36ad-4802-b2ae-678a12b9ac4f"
+            } ]
+          },
           "d53d5949-e47f-4e48-ae56-8bc120d3b28e" : {
             "rect" : {
               "xy" : {
