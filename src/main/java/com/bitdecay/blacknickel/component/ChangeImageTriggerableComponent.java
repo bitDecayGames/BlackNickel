@@ -17,12 +17,12 @@ public class ChangeImageTriggerableComponent extends TriggerableToggleComponent 
     }
 
     @Override
-    public void turnOn(TriggerComponent origin) {
+    public void turnOn(TriggererComponent source, TriggerComponent origin) {
         turn(path);
     }
 
     @Override
-    public void turnOff(TriggerComponent origin) {
+    public void turnOff(TriggererComponent source, TriggerComponent origin) {
         turn(originalPath);
     }
 

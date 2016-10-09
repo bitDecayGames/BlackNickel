@@ -16,13 +16,14 @@ public abstract class TriggerableToggleComponent extends TriggerableComponent {
 
     public TriggerableToggleComponent(MyGameObject obj, Config conf) { super(obj, conf); }
 
-    public final void execute(TriggerComponent origin){
-        if (on) turnOff(origin);
-        else turnOn(origin);
+    @Override
+    public final void execute(TriggererComponent source, TriggerComponent origin){
+        if (on) turnOff(source, origin);
+        else turnOn(source, origin);
         on = !on;
     }
 
-    public abstract void turnOn(TriggerComponent origin);
+    public abstract void turnOn(TriggererComponent source, TriggerComponent origin);
 
-    public abstract void turnOff(TriggerComponent origin);
+    public abstract void turnOff(TriggererComponent source, TriggerComponent origin);
 }

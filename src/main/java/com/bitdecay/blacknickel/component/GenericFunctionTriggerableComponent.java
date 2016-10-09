@@ -17,5 +17,5 @@ public class GenericFunctionTriggerableComponent extends TriggerableComponent {
     }
 
     @Override
-    public void execute(TriggerComponent origin) { func.accept(obj, origin); }
+    public void execute(TriggererComponent source, TriggerComponent origin) { func.accept(obj, origin); }
 }

@@ -23,7 +23,7 @@ public class NewRoomTriggerableComponent extends TriggerableComponent {
     public String level(){ return level; }
 
     @Override
-    public void execute(TriggerComponent origin) {
+    public void execute(TriggererComponent source, TriggerComponent origin) {
         obj.addComponent(new NewRoomComponent(obj, level));
     }
 }

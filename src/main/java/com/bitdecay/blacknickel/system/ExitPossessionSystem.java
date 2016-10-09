@@ -34,10 +34,8 @@ public class ExitPossessionSystem extends AbstractUpdatableSystem {
                 possessed.forEach(PossessableComponent.class, possessableComponent -> {
                     if (possessableComponent.possessor != null){
                         possessed.forEach(PositionComponent.class, possessedPos -> {
-                            possessableComponent.possessor.forEach(PositionComponent.class, possessorPos -> {
-                                possessorPos.x = possessedPos.x;
-                                possessorPos.y = possessedPos.y + 5;
-                            });
+                            possessableComponent.possessor.forEach(PositionComponent.class, possessorPos -> possessorPos.setPosition(possessedPos.x, possessedPos.y + 5));
+                            possessableComponent.possessor.forEach(PhysicsComponent.class, possessorPhy -> possessorPhy.setVelocity(0, 0));
                         });
                         possessableComponent.possessor.removeComponent(RemoveNowComponent.class);
                         new TimerComponent(possessableComponent.possessor, 0.1f, (possessor, timer) -> {

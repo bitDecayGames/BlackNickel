@@ -17,6 +17,12 @@ public class PositionComponent extends AbstractComponent {
         this.y = y;
     }
 
+    public PositionComponent setPosition(float x, float y){
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+
     /**
      * Immutable
      * @return new Vector2

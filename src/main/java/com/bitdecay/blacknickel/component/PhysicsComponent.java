@@ -63,6 +63,16 @@ public class PhysicsComponent extends AbstractComponent implements IInitializabl
         return body;
     }
 
+    public PhysicsComponent setPosition(float x, float y){
+        body.aabb.xy.set(x, y);
+        return this;
+    }
+
+    public PhysicsComponent setVelocity(float x, float y){
+        body.velocity.set(x, y);
+        return this;
+    }
+
     @Override
     public boolean isInitialized() {
         return initialized;
@@ -70,9 +80,7 @@ public class PhysicsComponent extends AbstractComponent implements IInitializabl
 
     @Override
     public void initialize(AbstractRoom room) {
-        obj.forEach(PositionComponent.class, pos -> {
-            body.aabb.xy.set(pos.x, pos.y);
-        });
+        obj.forEach(PositionComponent.class, pos -> setPosition(pos.x, pos.y));
         room.getWorld().addBody(body);
         initialized = true;
     }

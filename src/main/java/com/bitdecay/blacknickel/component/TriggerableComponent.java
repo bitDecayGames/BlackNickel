@@ -14,5 +14,5 @@ public abstract class TriggerableComponent extends AbstractComponent {
 
     public TriggerableComponent(MyGameObject obj, Config conf) { super(obj, conf); }
 
-    public abstract void execute(TriggerComponent origin);
+    public abstract void execute(TriggererComponent source, TriggerComponent origin);
 }

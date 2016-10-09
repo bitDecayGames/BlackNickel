@@ -1,12 +1,11 @@
 package com.bitdecay.blacknickel.component;
 
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
-import com.bitdecay.blacknickel.trait.IExecutable;
 
 /**
  * This is the component that DOES the triggering of the TriggerableComponent
  */
-public abstract class TriggerComponent extends AbstractComponent implements IExecutable {
+public abstract class TriggerComponent extends AbstractComponent {
 
     protected int uses = -1;
     protected TriggerableComponent triggerable;
@@ -21,11 +20,10 @@ public abstract class TriggerComponent extends AbstractComponent implements IExe
         this.uses = uses;
     }
 
-    @Override
-    public void execute() {
+    public void execute(TriggererComponent source) {
         if (uses > 0 || uses < 0) {
             uses -= 1;
-            triggerable.execute(this);
+            triggerable.execute(source, this);
         }
     }
 }
