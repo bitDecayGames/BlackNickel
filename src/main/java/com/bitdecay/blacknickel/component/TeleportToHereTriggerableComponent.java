@@ -23,5 +23,12 @@ public class TeleportToHereTriggerableComponent extends TriggerableComponent {
                 sourcePhy.setVelocity(0, 0);
             });
         }));
+        source.obj.removeComponent(source);
+        source.obj.addComponent(new TimerComponent(source.obj, 1f, ((myGameObject, timerComponent) -> {
+            myGameObject.removeComponent(timerComponent);
+            myGameObject.addComponent(source);
+        })));
+        source.obj.cleanup(); // doing this clean up here forces the removal of the triggerer component
+        source.obj.markAsDirty(); // marking it as dirty forces the systems to update
     }
 }

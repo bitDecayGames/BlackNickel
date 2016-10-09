@@ -535,7 +535,7 @@
             "width" : 16.0,
             "height" : 16.0
           },
-          "uuid" : "d4d4ed89-776c-40f6-b60d-2d5a521c85e4",
+          "uuid" : "4a36dd31-acf4-40b3-85b4-ae27c2f7f905",
           "material" : 0,
           "renderNValue" : 7,
           "collideNValue" : 7,
@@ -1176,7 +1176,7 @@
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", {
-          "120c5bd3-0156-49b9-b604-e59e56e1559c" : {
+          "c1104c59-677f-43ae-9309-7a2059313a5f" : {
             "rect" : {
               "xy" : {
                 "x" : -38.0,
@@ -1185,7 +1185,7 @@
               "width" : 96.0,
               "height" : 0.0
             },
-            "uuid" : "120c5bd3-0156-49b9-b604-e59e56e1559c",
+            "uuid" : "c1104c59-677f-43ae-9309-7a2059313a5f",
             "triggerer" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
               "name" : "InterRoomDoor",
               "rect" : {
@@ -1211,7 +1211,7 @@
               "uuid" : "0e7782aa-52d4-44c2-8c00-97a1e9ddf6f2"
             } ]
           },
-          "d251fb25-990f-45ca-a306-82d1e96449a0" : {
+          "196d7b59-68e0-4029-8522-8a008b13b155" : {
             "rect" : {
               "xy" : {
                 "x" : -54.0,
@@ -1220,7 +1220,42 @@
               "width" : 96.0,
               "height" : 0.0
             },
-            "uuid" : "d251fb25-990f-45ca-a306-82d1e96449a0",
+            "uuid" : "196d7b59-68e0-4029-8522-8a008b13b155",
+            "triggerer" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+              "name" : "InterRoomDoor",
+              "rect" : {
+                "xy" : {
+                  "x" : 32.0,
+                  "y" : 32.0
+                },
+                "width" : 20.0,
+                "height" : 30.0
+              },
+              "uuid" : "38d6e088-106c-44d9-aea9-53c47c149d39"
+            } ],
+            "triggeree" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+              "name" : "InterRoomDoor",
+              "rect" : {
+                "xy" : {
+                  "x" : -64.0,
+                  "y" : 32.0
+                },
+                "width" : 20.0,
+                "height" : 30.0
+              },
+              "uuid" : "4e6fc244-984b-4bd0-ba77-dde637abc09d"
+            } ]
+          },
+          "1ed6c8dd-0f1a-4b10-922f-1797a4bafdf7" : {
+            "rect" : {
+              "xy" : {
+                "x" : -54.0,
+                "y" : 47.0
+              },
+              "width" : 96.0,
+              "height" : 0.0
+            },
+            "uuid" : "1ed6c8dd-0f1a-4b10-922f-1797a4bafdf7",
             "triggerer" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
               "name" : "InterRoomDoor",
               "rect" : {

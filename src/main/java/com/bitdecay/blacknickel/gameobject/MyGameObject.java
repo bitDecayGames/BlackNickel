@@ -87,6 +87,11 @@ public class MyGameObject implements ICleanup {
         return dirty;
     }
 
+    public MyGameObject markAsDirty() {
+        dirty = true;
+        return this;
+    }
+
     @Override
     public void cleanup() {
         forEach(ICleanup.class, ICleanup::cleanup);
