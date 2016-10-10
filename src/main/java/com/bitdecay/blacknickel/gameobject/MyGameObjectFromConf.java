@@ -6,6 +6,7 @@ import com.bitdecay.blacknickel.component.IconComponent;
 import com.bitdecay.blacknickel.component.NameComponent;
 import com.bitdecay.blacknickel.component.PositionComponent;
 import com.typesafe.config.Config;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
  */
 public final class MyGameObjectFromConf {
 
+    private static final Logger log = Logger.getLogger(MyGameObjectFromConf.class);
     private static Config gobsConf = Launcher.conf.getConfig("gobs");
     private static List<Config> defaultConf = gobsConf.getConfigList("default").stream().map(Config.class::cast).collect(Collectors.toList());
     private static List<Config> listConf = gobsConf.getConfigList("list").stream().map(Config.class::cast).collect(Collectors.toList());
@@ -30,6 +32,11 @@ public final class MyGameObjectFromConf {
         List<Config> list = new ArrayList<>();
         list.addAll(listConf);
         return list;
+    }
+
+    public static boolean containsComponent(String objName, Class<? extends AbstractComponent> clazz){
+        String componentName = clazz.getSimpleName().replace("Component", "");
+        return configForObjectName(objName).filter(rootConf -> componentConfigListForConfig(Optional.of(rootConf)).stream().filter(componentConf -> componentConf.hasPath("name") && componentConf.getString("name").equalsIgnoreCase(componentName)).findFirst().isPresent()).isPresent();
     }
 
     public static MyGameObject objectFromConf(String name, float x, float y){

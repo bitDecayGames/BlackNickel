@@ -10,7 +10,7 @@ public class TriggerFactory {
 
     public static void setupTrigger(MyGameObject source, MyGameObject target){
         // TODO: need to take a source obj and a target obj and create both triggers and triggerables
-        target.getComponent(TriggerableComponent.class).ifPresent(triggerableComponent -> {
+        target.forEach(TriggerableComponent.class, triggerableComponent -> {
             source.forEach(TriggerTypeComponent.class, triggerTypeComponent -> {
                 switch (triggerTypeComponent.type().toLowerCase()){
                     case "overlap":

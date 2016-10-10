@@ -1,5 +1,6 @@
 package com.bitdecay.blacknickel.gameobject;
 
+import com.bitdecay.blacknickel.component.EditableDoorComponent;
 import com.bitdecay.blacknickel.component.PositionComponent;
 import com.bitdecay.blacknickel.component.SizeComponent;
 import com.bitdecay.blacknickel.component.TileComponent;
@@ -26,8 +27,8 @@ public final class MyGameObjectFactory {
     public static List<RenderableLevelObject> allLevelObjects(){
         return MyGameObjectFromConf.objectConfs().stream().map(config -> {
             String name = config.getString("name");
-            if (name.equalsIgnoreCase("door")) return new NewRoomLevelObject();
-            else return new ConfBasedLevelObject(config.getString("name"));
+            if (MyGameObjectFromConf.containsComponent(name, EditableDoorComponent.class)) return new NewRoomLevelObject(name);
+            else return new ConfBasedLevelObject(name);
         }).map(RenderableLevelObject.class::cast).collect(Collectors.toList());
     }
 

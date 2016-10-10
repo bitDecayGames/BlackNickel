@@ -8,9 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
 import com.bitdecay.blacknickel.camera.FollowOrthoCamera;
-import com.bitdecay.blacknickel.component.NewRoomTriggerableComponent;
-import com.bitdecay.blacknickel.component.TriggerFactory;
-import com.bitdecay.blacknickel.component.UuidComponent;
+import com.bitdecay.blacknickel.component.*;
 import com.bitdecay.blacknickel.editor.NewRoomLevelObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
@@ -169,11 +167,17 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
             layer.otherObjects.forEach((uuid, levelObject) -> {
                 MyGameObject gob = MyGameObjectFactory.objectFromConf(levelObject.name(), levelObject.rect.xy.x, levelObject.rect.xy.y);
                 gob.addComponent(new UuidComponent(gob, levelObject.uuid));
-                if (levelObject.name().equalsIgnoreCase(NewRoomLevelObject.NAME)) {
-                    gob.addComponent(new NewRoomTriggerableComponent(gob, ((NewRoomLevelObject) levelObject).level));
-                    gob.cleanup();
-                    TriggerFactory.setupTrigger(gob, gob);
-                }
+                gob.getComponent(EditableDoorComponent.class).ifPresent(edc -> { // this sets up the new-room doors
+                    edc.level = ((NewRoomLevelObject) levelObject).level;
+                    NewRoomTriggerableComponent newRoomTriggerable = new NewRoomTriggerableComponent(gob, edc.level);
+                    // if the door is locked, then the unlock door triggerable is added instead
+                    if (gob.hasComponent(LockedDoorComponent.class)) gob.addComponent(new UnlockDoorTriggerableComponent(gob, newRoomTriggerable));
+                    else {
+                        gob.addComponent(newRoomTriggerable);
+                        gob.cleanup();
+                        TriggerFactory.setupTrigger(gob, gob);
+                    }
+                });
                 gobs.add(gob);
             });
         });

@@ -39,7 +39,8 @@ public class OverlapTriggerSystem extends AbstractUpdatableSystem {
                     if (contact.isPresent()) contact.get().stillInContact = true;
                     else {
                         addToContacts(a, b);
-                        a.forEach(OverlapTriggerComponent.class, otc -> otc.execute(b.getComponent(OverlapTriggererComponent.class).get()));
+                        OverlapTriggererComponent bTriggerer = b.getComponent(OverlapTriggererComponent.class).get();
+                        a.forEach(OverlapTriggerComponent.class, otc -> otc.execute(bTriggerer));
                     }
                 }
             }
