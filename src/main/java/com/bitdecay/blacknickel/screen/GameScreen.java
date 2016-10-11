@@ -9,7 +9,7 @@ import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
 import com.bitdecay.blacknickel.room.AbstractRoom;
-import com.bitdecay.blacknickel.room.GenericRoom;
+import com.bitdecay.blacknickel.room.TestingRunRoom;
 import com.bitdecay.blacknickel.trait.ICanSetRoom;
 import com.bitdecay.blacknickel.trait.ICanSetScreen;
 import com.bitdecay.blacknickel.trait.IHasScreenSize;
@@ -36,7 +36,7 @@ public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetSc
     private AbstractRoom tempRoom = null; // for switching rooms
 
     public GameScreen(MyGame game){
-        this(game, new GenericRoom(FileUtils.loadFileAs(Level.class, Gdx.files.classpath((Launcher.conf.getString("demoLevel"))).readString())));
+        this(game, new TestingRunRoom(FileUtils.loadFileAs(Level.class, Gdx.files.classpath((Launcher.conf.getString("demoLevel"))).readString())));
     }
     public GameScreen(MyGame game, AbstractRoom room){
         this.game = game;

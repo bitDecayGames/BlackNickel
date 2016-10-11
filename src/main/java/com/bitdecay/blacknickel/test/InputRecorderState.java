@@ -7,29 +7,22 @@ import java.util.List;
 
 public class InputRecorderState {
 
-    public List<KeyPressState> keyStates = new ArrayList<>();
+    public boolean[] keyStates = new boolean[256];
 
     public InputRecorderState(){
-        for (int i = 0; i < 256; i ++) keyStates.add(new KeyPressState(i));
+        for (int i = 0; i < keyStates.length; i++) keyStates[i] = InputHelper.isKeyPressed(i);
+    }
+
+    public InputRecorderState(List<Integer> data){
+        for (int i = 0; i < keyStates.length; i++) keyStates[i] = false;
+        data.forEach(i -> keyStates[i] = true);
     }
 
     @Override
     public String toString() {
-        return keyStates.toString();
-    }
-
-    public class KeyPressState{
-        public int key;
-        public boolean state;
-        public KeyPressState(int key){
-            this.key = key;
-            this.state = InputHelper.isKeyPressed(key);
-        }
-
-        @Override
-        public String toString(){
-            return "{\"key\": " + key + ", \"state\": " + state + " }";
-        }
+        List<Integer> keys = new ArrayList<>();
+        for (int i = 0; i < keyStates.length; i++) if (keyStates[i]) keys.add(i);
+        return keys.toString();
     }
 }
 

@@ -8,16 +8,23 @@ public final class InputRecorder {
     public List<InputRecorderState> frameStates = new ArrayList<>();
 
     private boolean recording = false;
+    private Runnable onStop = null;
 
     public boolean isRecording(){ return recording; }
 
-    public InputRecorder startRecording(){
+    public InputRecorder startRecording(Runnable onStop){
+        this.onStop = onStop;
         recording = true;
         return this;
     }
 
+    public InputRecorder startRecording(){
+        return startRecording(null);
+    }
+
     public InputRecorder stopRecording(){
         recording = false;
+        if (onStop != null) onStop.run();
         return this;
     }
 
@@ -26,16 +33,7 @@ public final class InputRecorder {
         return this;
     }
 
-    public InputFromRecording generateNewInputProcessor(){
-        return new InputFromRecording(frameStates);
-    }
-
-    public String serialize(){
-        return frameStates.toString();
-    }
-
-    @Override
-    public String toString(){
-        return serialize();
+    public InputRecording generateNewInputProcessor(){
+        return new InputRecording(frameStates);
     }
 }

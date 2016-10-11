@@ -1,6 +1,5 @@
 package com.bitdecay.blacknickel.room;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,10 +15,7 @@ import com.bitdecay.blacknickel.gameobject.MyGameObjectFactory;
 import com.bitdecay.blacknickel.gameobject.MyGameObjects;
 import com.bitdecay.blacknickel.screen.GameScreen;
 import com.bitdecay.blacknickel.system.SystemManager;
-import com.bitdecay.blacknickel.test.InputFromRecording;
-import com.bitdecay.blacknickel.test.InputRecorder;
 import com.bitdecay.blacknickel.trait.*;
-import com.bitdecay.blacknickel.util.InputHelper;
 import com.bitdecay.blacknickel.util.RunMode;
 import com.bitdecay.jump.collision.BitWorld;
 import com.bitdecay.jump.gdx.level.EditorIdentifierObject;
@@ -54,9 +50,6 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     protected final LibGDXWorldRenderer worldRenderer = new LibGDXWorldRenderer();
     protected final BitWorld world = new BitWorld();
     protected Level level;
-
-    protected InputRecorder recorder = new InputRecorder();
-    protected InputFromRecording recording = null;
 
     public AbstractRoom(Level level){
         log = Logger.getLogger(this.getClass());
@@ -96,31 +89,6 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
         world.step(delta);
 
         systemManager.update(delta);
-
-        if (recording == null){
-            if (InputHelper.isKeyJustPressed(Input.Keys.ENTER)){
-                if (! recorder.isRecording()){
-                    log.debug("Start recording");
-                    recorder.startRecording();
-                }
-                else {
-                    log.debug("Stop recording");
-                    recorder.stopRecording();
-                    recording = recorder.generateNewInputProcessor();
-                    recorder = new InputRecorder();
-                }
-            }
-        } else if (!recording.isActive()) {
-            if (InputHelper.isKeyJustPressed(Input.Keys.ENTER)){
-                log.debug("Start processing");
-                recording.startInputProcessing();
-            }
-        } else {
-            log.debug("processing...");
-            recording.update();
-        }
-
-        recorder.update();
     }
 
     @Override
