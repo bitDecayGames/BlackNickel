@@ -2,7 +2,7 @@ package com.bitdecay.blacknickel.room;
 
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.bitdecay.blacknickel.screen.GameScreenTester;
+import com.bitdecay.blacknickel.screen.TestRunScreen;
 import com.bitdecay.blacknickel.test.InputRecording;
 import com.bitdecay.blacknickel.test.TestZones;
 import com.bitdecay.jump.level.Level;
@@ -49,7 +49,7 @@ public class TestingRunRoom extends GenericRoom {
 
         recording.startInputProcessing(()->{
             checkEndConditions();
-            ((GameScreenTester) gameScreen()).nextTest();
+            ((TestRunScreen) gameScreen()).nextTest();
         });
     }
 

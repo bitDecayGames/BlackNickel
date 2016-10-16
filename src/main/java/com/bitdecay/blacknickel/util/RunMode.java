@@ -3,5 +3,6 @@ package com.bitdecay.blacknickel.util;
 public enum RunMode {
     DEV,
     PROD,
-    TEST
+    TEST_RUN,
+    TEST_SETUP
 }

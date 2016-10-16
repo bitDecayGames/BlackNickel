@@ -32,6 +32,12 @@ public class MyGameObjects implements ICleanup {
         return this;
     }
 
+    public MyGameObjects addNew(Consumer<MyGameObject> func){
+        MyGameObject gob = new MyGameObject();
+        func.accept(gob);
+        return add(gob);
+    }
+
     public Optional<MyGameObject> remove(MyGameObject gob){
         if (gobs.contains(gob)){
             gobsToRemove.add(gob);

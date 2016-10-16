@@ -144,7 +144,7 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     }
 
     @Override
-    public final void levelChanged(Level level) {
+    public void levelChanged(Level level) {
         world.removeAllBodies();
         gobs.clear();
 

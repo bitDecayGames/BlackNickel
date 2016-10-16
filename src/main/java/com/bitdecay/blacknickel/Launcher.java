@@ -29,7 +29,8 @@ public class Launcher {
         if (args != null && args.length > 0) {
             // check for command line arguments
             if (arg(args, "dev")) runMode = RunMode.DEV;
-            else if (arg(args, "test")) runMode = RunMode.TEST;
+            else if (arg(args, "test_run")) runMode = RunMode.TEST_RUN;
+            else if (arg(args, "test_setup")) runMode = RunMode.TEST_SETUP;
         }
         log.debug("Run Mode: " + runMode);
         if (runMode == RunMode.DEV) TexturePackerUtils.pack();
