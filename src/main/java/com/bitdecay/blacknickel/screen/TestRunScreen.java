@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class TestRunScreen extends GameScreen {
 
-    private static List<? extends Config> tests = Launcher.conf.getConfigList("testScenes");
+    private static List<? extends Config> tests = Launcher.conf.getConfigList("test.testScenes");
     private static int currentTest = 0;
 
     public TestRunScreen(MyGame game){

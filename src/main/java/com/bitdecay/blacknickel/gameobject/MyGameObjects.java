@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * This is a collection class.  It contains a list of game objects.  In its constructor, you also need to provide a list of refreshables.  Those refreshables have their refresh method called when any of the game objects are dirty.
@@ -54,6 +55,10 @@ public class MyGameObjects implements ICleanup {
 
     public Optional<MyGameObject> find(Predicate<MyGameObject> find){
         return gobs.stream().filter(find).findFirst();
+    }
+
+    public List<MyGameObject> filter(Predicate<MyGameObject> filter) {
+        return gobs.stream().filter(filter).collect(Collectors.toList());
     }
 
     public <T> Optional<MyGameObject> findWith(Class<T> componentClass, Predicate<T> find){

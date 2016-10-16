@@ -89,7 +89,7 @@ public class TestingRoom extends GenericRoom {
     public String serialize(){
         StringBuilder sb = new StringBuilder();
         if (recording != null){
-            sb.append("level = \"").append(Launcher.conf.getString("testSetupLevel")).append("\"\n\n");
+            sb.append("level = \"").append(Launcher.conf.getString("test.testSetupLevel")).append("\"\n\n");
             sb.append("recording = ").append(recording.serialize()).append("\n\n");
             sb.append("zones = ").append(testZones.serialize());
         }

@@ -14,7 +14,7 @@ import com.bitdecay.jump.level.Level;
 public class TestSetupScreen extends GameScreen {
 
     public TestSetupScreen(MyGame game){
-        this(game, new TestingRoom(FileUtils.loadFileAs(Level.class, Gdx.files.classpath(Launcher.conf.getString("testSetupLevel")).readString())));
+        this(game, new TestingRoom(FileUtils.loadFileAs(Level.class, Gdx.files.classpath(Launcher.conf.getString("test.testSetupLevel")).readString())));
     }
     public TestSetupScreen(MyGame game, AbstractRoom room){
         super(game, room);
