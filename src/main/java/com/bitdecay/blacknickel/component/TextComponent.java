@@ -10,10 +10,10 @@ import com.typesafe.config.Config;
  * This component, when added to a game object, will draw a circle at the current position of the game object.
  */
 public class TextComponent extends AbstractComponent implements IOffsetable {
-    public final String text;
-    public final Color color;
-    public final float scale;
-    private final Vector2 offset;
+    public String text;
+    public Color color;
+    public float scale;
+    public Vector2 offset;
 
     public TextComponent(MyGameObject obj, String text, Color color, float scale, Vector2 offset){
         super(obj);

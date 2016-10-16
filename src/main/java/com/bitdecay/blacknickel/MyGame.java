@@ -5,6 +5,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.bitdecay.blacknickel.screen.GameScreen;
 import com.bitdecay.blacknickel.screen.SplashScreen;
+import com.bitdecay.blacknickel.screen.TestRunScreen;
+import com.bitdecay.blacknickel.screen.TestSetupScreen;
 import com.bitdecay.blacknickel.trait.ICanSetScreen;
 import com.bitdecay.blacknickel.util.RunMode;
 import com.bytebreakstudios.animagic.texture.AnimagicTextureAtlas;
@@ -37,6 +39,8 @@ public class MyGame extends Game implements ICanSetScreen{
         ATLAS = ASSET_MANAGER.get("img/packed/main.atlas", AnimagicTextureAtlas.class);
 
         if (RUN_MODE == RunMode.DEV) setScreen(new GameScreen(this));
+        else if (RUN_MODE == RunMode.TEST_RUN) setScreen(new TestRunScreen(this));
+        else if (RUN_MODE == RunMode.TEST_SETUP) setScreen(new TestSetupScreen(this));
         else if (RUN_MODE == RunMode.PROD) setScreen(new SplashScreen(this));
     }
 }

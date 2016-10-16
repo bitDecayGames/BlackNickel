@@ -30,10 +30,10 @@ import java.util.List;
  */
 public class GameScreen implements Screen, EditorHook, IHasScreenSize, ICanSetScreen, ICanSetRoom {
 
-    private MyGame game;
+    protected MyGame game;
 
-    private AbstractRoom room;
-    private AbstractRoom tempRoom = null; // for switching rooms
+    protected AbstractRoom room;
+    protected AbstractRoom tempRoom = null; // for switching rooms
 
     public GameScreen(MyGame game){
         this(game, new GenericRoom(FileUtils.loadFileAs(Level.class, Gdx.files.classpath((Launcher.conf.getString("demoLevel"))).readString())));
