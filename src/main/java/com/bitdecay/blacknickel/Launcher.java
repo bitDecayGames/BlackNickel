@@ -6,7 +6,6 @@ import com.bitdecay.blacknickel.util.RunMode;
 import com.bitdecay.blacknickel.util.TexturePackerUtils;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 /**
@@ -18,7 +17,6 @@ public class Launcher {
     public static Config conf = ConfigFactory.load("conf/application.conf");
 
     public static void main(String[] args) {
-        BasicConfigurator.configure();
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.width = Launcher.conf.getInt("resolution.default.width");
         config.height = Launcher.conf.getInt("resolution.default.height");

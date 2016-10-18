@@ -6,7 +6,6 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.util.TexturePackerUtils;
 import com.bitdecay.jump.leveleditor.render.LevelEditor;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 /**
@@ -17,8 +16,6 @@ public class EditorLauncher {
     private static final Logger log = Logger.getLogger(EditorLauncher.class);
 
     public static void main(String[] arg) {
-        BasicConfigurator.configure();
-
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.width = Launcher.conf.getInt("resolution.editor.width");
         config.height = Launcher.conf.getInt("resolution.editor.height");
