@@ -7,18 +7,24 @@ public class MyGameObjectUtils {
     private MyGameObjectUtils(){}
 
     public static boolean overlap(MyGameObject a, MyGameObject b){
-        return a.getComponent(SizeComponent.class).flatMap(sizeA -> a.getComponent(PositionComponent.class).flatMap(posA -> b.getComponent(SizeComponent.class).flatMap(sizeB -> b.getComponent(PositionComponent.class).map(posB -> {
-            float aTop = posA.y + sizeA.h;
-            float aBot = posA.y;
-            float aLeft = posA.x;
-            float aRight = posA.x + sizeA.w;
+        return a.getComponent(SizeComponent.class).flatMap(sizeA -> a.getComponent(PositionComponent.class).flatMap(posA -> b.getComponent(SizeComponent.class).flatMap(sizeB -> b.getComponent(PositionComponent.class).map(posB -> overlap(posA, sizeA, posB, sizeB))))).orElse(false);
+    }
 
-            float bTop = posB.y + sizeB.h;
-            float bBot = posB.y;
-            float bLeft = posB.x;
-            float bRight = posB.x + sizeB.w;
+    public static boolean overlap(PositionComponent aPos, SizeComponent aSize, PositionComponent bPos, SizeComponent bSize){
+        return overlap(aPos.x, aPos.y, aSize.w, aSize.h, bPos.x, bPos.y, bSize.w, bSize.h);
+    }
 
-            return aLeft < bRight && aRight > bLeft && aTop > bBot && aBot < bTop;
-        })))).orElse(false);
+    public static boolean overlap(float aX, float aY, float aW, float aH, float bX, float bY, float bW, float bH){
+        float aTop = aY + aH;
+        float aBot = aY;
+        float aLeft = aX;
+        float aRight = aX + aW;
+
+        float bTop = bY + bH;
+        float bBot = bY;
+        float bLeft = bX;
+        float bRight = bX + bW;
+
+        return aLeft < bRight && aRight > bLeft && aTop > bBot && aBot < bTop;
     }
 }
