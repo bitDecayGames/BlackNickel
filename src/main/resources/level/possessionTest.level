@@ -512,7 +512,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : -32.0,
+              "y" : 64.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "ce5622b8-d51f-41b3-bee1-fa837087a32c",
+          "material" : 0,
+          "renderNValue" : 2,
+          "collideNValue" : 2,
+          "oneway" : false
+        }, null, {
           "rect" : {
             "xy" : {
               "x" : -32.0,
@@ -554,7 +568,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : -16.0,
+              "y" : 64.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "9c159dd0-1de0-4c5a-828c-c4abe19edd27",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, {
           "rect" : {
             "xy" : {
               "x" : -16.0,
@@ -596,7 +624,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 0.0,
+              "y" : 64.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "d2f9de38-baf3-49b9-ad44-fc904f778c55",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, {
           "rect" : {
             "xy" : {
               "x" : 0.0,
@@ -638,7 +680,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 16.0,
+              "y" : 64.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "5074cb7c-98e1-4b74-ba04-d879f37b8a38",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, {
           "rect" : {
             "xy" : {
               "x" : 16.0,
@@ -680,7 +736,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 32.0,
+              "y" : 64.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "b670f861-9349-4d59-a8bb-5b23f5f9c1b5",
+          "material" : 0,
+          "renderNValue" : 8,
+          "collideNValue" : 8,
+          "oneway" : false
+        }, null, {
           "rect" : {
             "xy" : {
               "x" : 32.0,
@@ -806,7 +876,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 80.0,
+              "y" : 0.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "6feffae7-d893-4dc1-9713-e72c7bf5082e",
+          "material" : 0,
+          "renderNValue" : 2,
+          "collideNValue" : 2,
+          "oneway" : false
+        }, null, null, null, null, null, {
           "rect" : {
             "xy" : {
               "x" : 80.0,
@@ -848,7 +932,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 96.0,
+              "y" : 0.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "db816b78-e393-48b1-9db2-54e707c65532",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, null, null, null, null, {
           "rect" : {
             "xy" : {
               "x" : 96.0,
@@ -890,7 +988,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 112.0,
+              "y" : 0.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "655e9498-c4ec-4909-bd6e-5bed0760778d",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, null, null, null, null, {
           "rect" : {
             "xy" : {
               "x" : 112.0,
@@ -932,7 +1044,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 128.0,
+              "y" : 0.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "8a2333d1-73ac-44f3-b4e3-1aacefa1a393",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, null, null, null, null, {
           "rect" : {
             "xy" : {
               "x" : 128.0,
@@ -974,7 +1100,21 @@
           "renderNValue" : 14,
           "collideNValue" : 14,
           "oneway" : false
-        }, null, null, null, null, null, null, null, null, null, null, {
+        }, null, null, null, null, {
+          "rect" : {
+            "xy" : {
+              "x" : 144.0,
+              "y" : 0.0
+            },
+            "width" : 16.0,
+            "height" : 16.0
+          },
+          "uuid" : "0257289b-0b3d-4e7d-ac73-2c38be9cda41",
+          "material" : 0,
+          "renderNValue" : 10,
+          "collideNValue" : 10,
+          "oneway" : false
+        }, null, null, null, null, null, {
           "rect" : {
             "xy" : {
               "x" : 144.0,
@@ -1083,8 +1223,8 @@
           },
           "uuid" : "5b32b016-9072-490b-9bc9-7a8e05228715",
           "material" : 0,
-          "renderNValue" : 5,
-          "collideNValue" : 5,
+          "renderNValue" : 13,
+          "collideNValue" : 13,
           "oneway" : false
         }, {
           "rect" : {
@@ -1172,6 +1312,18 @@
           "oneway" : false
         } ] ],
         "otherObjects" : [ "java.util.HashMap", {
+          "d98b5a5d-514d-45d9-9fdf-62c71084ae84" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+            "name" : "ShellStopped",
+            "rect" : {
+              "xy" : {
+                "x" : 0.0,
+                "y" : 80.0
+              },
+              "width" : 10.0,
+              "height" : 10.0
+            },
+            "uuid" : "d98b5a5d-514d-45d9-9fdf-62c71084ae84"
+          } ],
           "a0d3e3d3-5963-4d80-9d32-d22f37b2dfce" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Shell",
             "rect" : {
@@ -1184,30 +1336,6 @@
             },
             "uuid" : "a0d3e3d3-5963-4d80-9d32-d22f37b2dfce"
           } ],
-          "7d5a59ce-aeda-4360-b610-dda918571de9" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
-            "name" : "Ghost",
-            "rect" : {
-              "xy" : {
-                "x" : 0.0,
-                "y" : 16.0
-              },
-              "width" : 13.0,
-              "height" : 18.0
-            },
-            "uuid" : "7d5a59ce-aeda-4360-b610-dda918571de9"
-          } ],
-          "6e36a068-5706-415a-a4df-509793a3b8f6" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
-            "name" : "Ghost",
-            "rect" : {
-              "xy" : {
-                "x" : 80.0,
-                "y" : 16.0
-              },
-              "width" : 13.0,
-              "height" : 18.0
-            },
-            "uuid" : "6e36a068-5706-415a-a4df-509793a3b8f6"
-          } ],
           "8e2fc072-fe77-4b23-9821-10c23bf27624" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
             "name" : "Ghost",
             "rect" : {
@@ -1219,6 +1347,18 @@
               "height" : 18.0
             },
             "uuid" : "8e2fc072-fe77-4b23-9821-10c23bf27624"
+          } ],
+          "e7534583-bacc-4ee8-9794-c060c97e6e30" : [ "com.bitdecay.blacknickel.editor.ConfBasedLevelObject", {
+            "name" : "ShellStopped",
+            "rect" : {
+              "xy" : {
+                "x" : 96.0,
+                "y" : 32.0
+              },
+              "width" : 10.0,
+              "height" : 10.0
+            },
+            "uuid" : "e7534583-bacc-4ee8-9794-c060c97e6e30"
           } ]
         } ],
         "triggers" : [ "java.util.HashMap", { } ],

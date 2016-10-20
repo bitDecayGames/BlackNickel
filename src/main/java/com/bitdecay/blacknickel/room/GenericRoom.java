@@ -20,7 +20,6 @@ public class GenericRoom extends AbstractRoom {
         new FreestyleMovementSystem(this);
         new ShellMovementSystem(this);
         new PossessionSystem(this);
-        new ExitPossessionSystem(this);
         new NewRoomSystem(this);
         new ScreenShakeSystem(this);
         new OverlapTriggerSystem(this);

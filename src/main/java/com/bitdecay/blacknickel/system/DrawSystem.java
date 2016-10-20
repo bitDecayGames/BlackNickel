@@ -1,10 +1,12 @@
 package com.bitdecay.blacknickel.system;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bitdecay.blacknickel.component.DrawableComponent;
 import com.bitdecay.blacknickel.component.PositionComponent;
 import com.bitdecay.blacknickel.component.SizeComponent;
+import com.bitdecay.blacknickel.component.TintComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractDrawableSystem;
@@ -27,8 +29,11 @@ public class DrawSystem extends AbstractDrawableSystem {
         gobs.forEach(gob ->
                 gob.forEach(DrawableComponent.class, drawable ->
                         gob.forEach(PositionComponent.class, pos ->
-                                gob.forEach(SizeComponent.class, size ->
-                                        spriteBatch.draw(drawable.image(), pos.x, pos.y, size.w, size.h)))));
+                                gob.forEach(SizeComponent.class, size -> {
+                                        if (gob.hasComponent(TintComponent.class)) spriteBatch.setColor(gob.getComponent(TintComponent.class).get().color());
+                                        spriteBatch.draw(drawable.image(), pos.x, pos.y, size.w, size.h);
+                                        if (gob.hasComponent(TintComponent.class)) spriteBatch.setColor(Color.WHITE);
+                                }))));
         spriteBatch.end();
     }
 }

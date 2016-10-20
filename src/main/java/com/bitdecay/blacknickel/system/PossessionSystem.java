@@ -1,9 +1,11 @@
 package com.bitdecay.blacknickel.system;
 
+import com.badlogic.gdx.math.Vector2;
 import com.bitdecay.blacknickel.Launcher;
-import com.bitdecay.blacknickel.component.*;
+import com.bitdecay.blacknickel.component.PositionComponent;
+import com.bitdecay.blacknickel.component.PossessableComponent;
+import com.bitdecay.blacknickel.component.UnderControlComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
-import com.bitdecay.blacknickel.gameobject.MyGameObjectUtils;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractUpdatableSystem;
 import com.bytebreakstudios.input.Key;
@@ -31,20 +33,26 @@ public class PossessionSystem extends AbstractUpdatableSystem {
 
     @Override
     public void update(float delta) {
-        gobs.stream().filter(a -> a.hasComponents(UnderControlComponent.class, PositionComponent.class)).forEach(possessor -> {
+        gobs.stream().filter(a -> a.hasComponents(UnderControlComponent.class, PositionComponent.class)).collect(Collectors.toList()).forEach(possessor -> {
             if (Keyboard.isAtLeastOneKeyJustPressed(possessionButtons)) {
                 room.sloMo();
-                gobs.stream().filter(b -> b.hasComponents(PossessableComponent.class, PositionComponent.class, SizeComponent.class)).forEach(possessable -> {
-                    if (MyGameObjectUtils.overlap(possessor, possessable)) {
-                        possessor.removeComponent(UnderControlComponent.class);
-                        possessor.addComponent(RemoveNowComponent.class);
-                        possessable.addComponent(UnderControlComponent.class);
-                        possessable.forEach(PossessableComponent.class, possessableComponent -> possessableComponent.possessor = possessor);
-                    }
-                });
+            } else if (Keyboard.isAtLeastOneKeyPressed(possessionButtons)){
+                // holding the key
             } else if (Keyboard.isAtLeastOneKeyJustReleased(possessionButtons)){
+                PositionComponent possessorPos = possessor.getComponent(PositionComponent.class).get();
+                gobs.stream().filter(b -> b.hasComponents(PossessableComponent.class, PositionComponent.class) && possessor != b).sorted((a, b) -> distance(possessorPos, a.getComponent(PositionComponent.class).get(), b.getComponent(PositionComponent.class).get())).findFirst().ifPresent(possessable -> {
+                    possessor.removeComponent(UnderControlComponent.class);
+                    possessable.addComponent(UnderControlComponent.class);
+                });
                 room.realtime();
             }
         });
+    }
+
+    private int distance(PositionComponent orig, PositionComponent a, PositionComponent b){
+        float aDst = Vector2.dst(orig.x, orig.y, a.x, a.y);
+        float bDst = Vector2.dst(orig.x, orig.y, b.x, b.y);
+
+        return aDst > bDst ? 1 : aDst < bDst ? -1 : 0;
     }
 }
