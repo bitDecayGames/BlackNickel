@@ -1,7 +1,6 @@
 package com.bitdecay.blacknickel.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,7 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
-import com.bitdecay.blacknickel.util.InputHelper;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.util.SoundLibrary;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class SplashScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (InputHelper.isKeyJustPressed(Input.Keys.SPACE, Input.Keys.ENTER, Input.Keys.ESCAPE)) nextScreen();
+        if (Keyboard.isAtLeastOneKeyJustPressed(Key.SPACE, Key.ENTER, Key.ESCAPE)) nextScreen();
 
         stage.act();
         stage.draw();

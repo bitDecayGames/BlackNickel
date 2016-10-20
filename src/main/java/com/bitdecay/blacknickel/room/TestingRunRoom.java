@@ -1,14 +1,14 @@
 package com.bitdecay.blacknickel.room;
 
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.bitdecay.blacknickel.component.*;
+import com.bitdecay.blacknickel.input.InputRecording;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.screen.TestRunScreen;
-import com.bitdecay.blacknickel.test.InputRecording;
 import com.bitdecay.blacknickel.test.TestZones;
-import com.bitdecay.blacknickel.util.InputHelper;
 import com.bitdecay.jump.level.Level;
 import com.typesafe.config.Config;
 
@@ -38,7 +38,7 @@ public class TestingRunRoom extends GenericRoom {
                 recording.update();
                 testZones.update();
             }
-        } else if (InputHelper.isKeyJustPressed(Input.Keys.SPACE)){
+        } else if (Keyboard.isKeyJustPressed(Key.SPACE)){
             ((TestRunScreen) gameScreen()).nextTest();
         }
     }

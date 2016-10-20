@@ -51,6 +51,8 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
     protected final BitWorld world = new BitWorld();
     protected Level level;
 
+    protected float runSpeed = 1;
+
     public AbstractRoom(Level level){
         log = Logger.getLogger(this.getClass());
         camera.maxZoom = (float) Launcher.conf.getDouble("resolution.camera.maxZoom");
@@ -81,6 +83,8 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
 
     @Override
     public void update(float delta) {
+        delta *= runSpeed;
+
         cleanupables.forEach(c -> {
             if (c.isDirty()) c.cleanup();
         });
@@ -195,5 +199,15 @@ public abstract class AbstractRoom implements IUpdate, IDraw, IHasScreenSize, IC
 
     public GameScreen gameScreen(){
         return gameScreen;
+    }
+
+    public AbstractRoom sloMo(){
+        runSpeed = 0.3f;
+        return this;
+    }
+
+    public AbstractRoom realtime(){
+        runSpeed = 1;
+        return this;
     }
 }

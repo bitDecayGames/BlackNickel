@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.bitdecay.blacknickel.util.InputHelper;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.typesafe.config.Config;
 import org.apache.log4j.Logger;
 
@@ -47,8 +48,8 @@ public class TestZones {
         Vector2 mousePos = mousePos();
         if (justPressed) {
             tmp = new Circle(mousePos.x, mousePos.y, 0);
-            if (InputHelper.isKeyPressed(Input.Keys.COMMA)) startingCircles.add(tmp);
-            else if (InputHelper.isKeyPressed(Input.Keys.PERIOD)) endingCircles.add(tmp);
+            if (Keyboard.isKeyPressed(Key.COMMA)) startingCircles.add(tmp);
+            else if (Keyboard.isKeyPressed(Key.PERIOD)) endingCircles.add(tmp);
             else startingCircles.add(tmp);
         } else if (justReleased) {
             tmp = null;

@@ -2,6 +2,7 @@ package com.bitdecay.blacknickel;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.bitdecay.blacknickel.input.InputApplicationListenerWrapper;
 import com.bitdecay.blacknickel.util.RunMode;
 import com.bitdecay.blacknickel.util.TexturePackerUtils;
 import com.typesafe.config.Config;
@@ -33,7 +34,7 @@ public class Launcher {
         log.debug("Run Mode: " + runMode);
         if (runMode == RunMode.DEV) TexturePackerUtils.pack();
 
-        new LwjglApplication(new MyGame(runMode), config);
+        new LwjglApplication(new InputApplicationListenerWrapper(new MyGame(runMode)), config);
     }
 
     private static boolean arg(String[] args, String arg){

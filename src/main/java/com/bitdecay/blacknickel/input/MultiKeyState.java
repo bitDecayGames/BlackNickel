@@ -1,4 +1,4 @@
-package com.bitdecay.blacknickel.util;
+package com.bitdecay.blacknickel.input;
 
 import com.bitdecay.jump.gdx.input.KeyState;
 
@@ -9,26 +9,25 @@ import java.util.List;
  */
 public class MultiKeyState extends KeyState {
 
-    private int[] keys;
+    private List<Key> keys;
 
     public MultiKeyState(int... keys) {
         super(0);
-        this.keys = keys;
+        this.keys = Key.fromCodes(keys);
     }
 
     public MultiKeyState(List<Integer> keys){
         super(0);
-        this.keys = new int[keys.size()];
-        for (int i = 0; i < keys.size(); i++) this.keys[i] = keys.get(i);
+        this.keys = Key.fromCodes(keys);
     }
 
     @Override
     public boolean isJustPressed() {
-        return InputHelper.isKeyJustPressed(keys);
+        return Keyboard.isAtLeastOneKeyJustPressed(keys);
     }
 
     @Override
     public boolean isPressed() {
-        return InputHelper.isKeyPressed(keys);
+        return Keyboard.isAtLeastOneKeyPressed(keys);
     }
 }

@@ -1,19 +1,20 @@
 package com.bitdecay.blacknickel.system;
 
-import com.badlogic.gdx.Input;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.FreestyleMovementComponent;
 import com.bitdecay.blacknickel.component.PhysicsComponent;
 import com.bitdecay.blacknickel.component.UnderControlComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractForEachUpdatableSystem;
-import com.bitdecay.blacknickel.util.InputHelper;
 import com.bitdecay.jump.geom.BitPoint;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  */
 public class FreestyleMovementSystem extends AbstractForEachUpdatableSystem {
 
-    private Map<String, List<Integer>> controls = new HashMap<>();
+    private Map<String, List<Key>> controls = new HashMap<>();
 
     public FreestyleMovementSystem(AbstractRoom room) {
         super(room);
@@ -56,11 +57,11 @@ public class FreestyleMovementSystem extends AbstractForEachUpdatableSystem {
     }
 
     private boolean isPressed(String name){
-        return InputHelper.isKeyPressed(controls.get(name));
+        return Keyboard.isAtLeastOneKeyPressed(controls.get(name));
     }
 
-    private List<Integer> getControls(String name){
-        return Launcher.conf.getConfig("controls").getConfig("keyboard").getStringList(name).stream().map(Input.Keys::valueOf).filter(i -> i >= 0).collect(Collectors.toList());
+    private List<Key> getControls(String name){
+        return Launcher.conf.getConfig("controls").getConfig("keyboard").getStringList(name).stream().map(Key::fromString).filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
     }
 
 }

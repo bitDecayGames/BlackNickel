@@ -20,7 +20,9 @@
 
         <!-- these probably shouldn't change much -->
         <gdxVersion>1.6.5</gdxVersion>
+        <inputVersion>1.6.0</inputVersion>
         <log4jVersion>1.2.17</log4jVersion>
+        <typesafeConfigVersion>1.3.0</typesafeConfigVersion>
         <jacksonVersion>2.6.1</jacksonVersion>
         <commonsVersion>2.4</commonsVersion>
     </properties>
@@ -145,7 +147,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4jVersion}</version>
         </dependency>
         <!-- END LOGGING -->
         <!-- Why do we need these jackson imports? animagic should bring them in... confusing -->
@@ -170,7 +172,7 @@
         <dependency>
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
-            <version>1.3.0</version>
+            <version>${typesafeConfigVersion}</version>
         </dependency>
         <!-- END CONFIG DEPENDENCIES -->
         <!-- START CUSTOM TOOLS DEPENDENCIES -->
@@ -198,6 +200,11 @@
             <groupId>com.bytebreakstudios</groupId>
             <artifactId>animagic</artifactId>
             <version>${animagicVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bytebreakstudios</groupId>
+            <artifactId>input</artifactId>
+            <version>${inputVersion}</version>
         </dependency>
         <!-- END CUSTOM TOOLS DEPENDENCIES-->
         <!-- START GDX DEPENDENCIES -->

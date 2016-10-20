@@ -1,11 +1,11 @@
-package com.bitdecay.blacknickel.test;
+package com.bitdecay.blacknickel.input;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class InputRecorder {
 
-    public List<InputRecorderState> frameStates = new ArrayList<>();
+    public List<KeyboardState> frameStates = new ArrayList<>();
 
     private boolean recording = false;
     private Runnable onStop = null;
@@ -29,7 +29,7 @@ public final class InputRecorder {
     }
 
     public InputRecorder update() {
-        if (recording) frameStates.add(new InputRecorderState());
+        if (recording) frameStates.add(Keyboard.current());
         return this;
     }
 

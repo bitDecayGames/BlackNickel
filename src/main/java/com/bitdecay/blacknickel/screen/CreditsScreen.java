@@ -1,7 +1,6 @@
 package com.bitdecay.blacknickel.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,7 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
-import com.bitdecay.blacknickel.util.InputHelper;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 
 /**
  * This is the generic credits screen.  Almost everything in the credits is populated from the /resources/conf/credits.conf file.  The only reason you should be making changes to this file is to adjust the position or speed of the text.
@@ -114,7 +114,7 @@ public class CreditsScreen implements Screen {
         stage.act();
         stage.draw();
 
-        if (InputHelper.isKeyJustPressed(Input.Keys.SPACE, Input.Keys.ESCAPE, Input.Keys.B, Input.Keys.BACKSPACE)) nextScreen();
+        if (Keyboard.isAtLeastOneKeyJustPressed(Key.SPACE, Key.ESCAPE, Key.B, Key.BACKSPACE)) nextScreen();
     }
 
     public void nextScreen(){

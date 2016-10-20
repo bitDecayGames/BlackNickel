@@ -43,4 +43,6 @@ public class MyGame extends Game implements ICanSetScreen{
         else if (RUN_MODE == RunMode.TEST_SETUP) setScreen(new TestSetupScreen(this));
         else if (RUN_MODE == RunMode.PROD) setScreen(new SplashScreen(this));
     }
+
+
 }

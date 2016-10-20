@@ -1,7 +1,6 @@
 package com.bitdecay.blacknickel.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,7 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
-import com.bitdecay.blacknickel.util.InputHelper;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.util.SoundLibrary;
 
 import java.util.ArrayList;
@@ -109,9 +109,9 @@ public class MainMenuScreen implements Screen {
 
 
     public void update(){
-        if (InputHelper.isKeyJustPressed(Input.Keys.UP, Input.Keys.LEFT, Input.Keys.W, Input.Keys.A)) updateMenuSelection(-1);
-        else if (InputHelper.isKeyJustPressed(Input.Keys.DOWN, Input.Keys.RIGHT, Input.Keys.S, Input.Keys.D)) updateMenuSelection(1);
-        else if (InputHelper.isKeyJustPressed(Input.Keys.ENTER, Input.Keys.SPACE)) makeSelection();
+        if (Keyboard.isAtLeastOneKeyJustPressed(Key.UP, Key.LEFT, Key.W, Key.A)) updateMenuSelection(-1);
+        else if (Keyboard.isAtLeastOneKeyJustPressed(Key.DOWN, Key.RIGHT, Key.S, Key.D)) updateMenuSelection(1);
+        else if (Keyboard.isAtLeastOneKeyJustPressed(Key.ENTER, Key.SPACE)) makeSelection();
     }
 
     private void gotoGame() {

@@ -1,7 +1,5 @@
-package com.bitdecay.blacknickel.test;
+package com.bitdecay.blacknickel.input;
 
-import com.bitdecay.blacknickel.trait.IInputAware;
-import com.bitdecay.blacknickel.util.InputHelper;
 import com.typesafe.config.Config;
 import org.apache.log4j.Logger;
 
@@ -13,7 +11,7 @@ public class InputRecording implements IInputAware {
 
     private final static Logger log = Logger.getLogger(InputRecording.class);
 
-    private List<InputRecorderState> inputFrames = new ArrayList<>();
+    private List<KeyboardState> inputFrames = new ArrayList<>();
     private boolean active = false;
     private int currentFrame = 0;
     private IInputAware previousInputAware = null;
@@ -29,10 +27,10 @@ public class InputRecording implements IInputAware {
             List<Integer> frameData = frameConf.getIntList("data");
             data.set(frame, Optional.of(frameData));
         });
-        data.forEach(frame -> inputFrames.add(new InputRecorderState(frame.orElse(new ArrayList<>()))));
+        data.forEach(frame -> inputFrames.add(new KeyboardState(frame.orElse(new ArrayList<>()))));
     }
 
-    public InputRecording(List<InputRecorderState> inputFrames){
+    public InputRecording(List<KeyboardState> inputFrames){
         this.inputFrames = inputFrames;
     }
 
@@ -40,8 +38,8 @@ public class InputRecording implements IInputAware {
 
     public InputRecording startInputProcessing(Runnable onStop){
         this.onStop = onStop;
-        if (previousInputAware == null) previousInputAware = InputHelper.getInputAware();
-        InputHelper.setInputAware(this);
+        if (previousInputAware == null) previousInputAware = Keyboard.getInputAware();
+        Keyboard.setInputAware(this);
         active = true;
         currentFrame = 0;
         return this;
@@ -52,7 +50,7 @@ public class InputRecording implements IInputAware {
     }
 
     public InputRecording stopInputProcessing(){
-        if (previousInputAware != null) InputHelper.setInputAware(previousInputAware);
+        if (previousInputAware != null) Keyboard.setInputAware(previousInputAware);
         active = false;
         currentFrame = 0;
         if (onStop != null) onStop.run();
@@ -68,17 +66,17 @@ public class InputRecording implements IInputAware {
     }
 
     @Override
-    public boolean isKeyJustPressed(int key) {
+    public boolean isKeyJustPressed(Key key) {
         return currentFrame > 0 && isKeyPressedAtFrame(currentFrame, key) && !isKeyPressedAtFrame(currentFrame - 1, key);
     }
 
     @Override
-    public boolean isKeyPressed(int key) {
+    public boolean isKeyPressed(Key key) {
         return isKeyPressedAtFrame(currentFrame, key);
     }
 
-    private boolean isKeyPressedAtFrame(int frame, int key){
-        return active && inputFrames.get(frame).keyStates[key];
+    private boolean isKeyPressedAtFrame(int frame, Key key){
+        return active && inputFrames.get(frame).isKeyPressed(key);
     }
 
     public String serialize(){
@@ -88,7 +86,7 @@ public class InputRecording implements IInputAware {
         sb.append("\"data\": ");
         List<String> data = new ArrayList<>();
         for (int i = 0; i < inputFrames.size(); i++){
-            InputRecorderState frame = inputFrames.get(i);
+            KeyboardState frame = inputFrames.get(i);
             String frameStr = frame.toString();
             if (! frameStr.equalsIgnoreCase("[]")){
                 data.add("{\"frame\": " + i + ", \"data\": " + frameStr + "}");

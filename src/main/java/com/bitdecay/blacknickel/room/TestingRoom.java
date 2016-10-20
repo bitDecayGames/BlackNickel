@@ -1,17 +1,17 @@
 package com.bitdecay.blacknickel.room;
 
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.StringBuilder;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.PositionComponent;
 import com.bitdecay.blacknickel.component.TextComponent;
-import com.bitdecay.blacknickel.test.InputRecorder;
-import com.bitdecay.blacknickel.test.InputRecording;
+import com.bitdecay.blacknickel.input.InputRecorder;
+import com.bitdecay.blacknickel.input.InputRecording;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.test.TestZones;
-import com.bitdecay.blacknickel.util.InputHelper;
 import com.bitdecay.jump.level.Level;
 
 
@@ -35,7 +35,7 @@ public class TestingRoom extends GenericRoom {
         if (!paused) super.update(delta);
         // input recording
         if (recording == null){
-            if (InputHelper.isKeyJustPressed(Input.Keys.ENTER)){
+            if (Keyboard.isKeyJustPressed(Key.ENTER)){
                 paused = false;
                 if (! recorder.isRecording()) {
                     debugText.color = Color.RED.cpy();
@@ -51,7 +51,7 @@ public class TestingRoom extends GenericRoom {
                 }
             }
         } else if (!recording.isActive()) {
-            if (InputHelper.isKeyJustPressed(Input.Keys.ENTER)) {
+            if (Keyboard.isKeyJustPressed(Key.ENTER)) {
                 debugText.color = Color.RED.cpy();
                 debugText.text = "Running";
                 recording.startInputProcessing();
@@ -61,7 +61,7 @@ public class TestingRoom extends GenericRoom {
 
         testZones.update();
 
-        if (InputHelper.isKeyJustPressed(Input.Keys.ESCAPE)) log.debug("\n\n" + serialize() + "\n");
+        if (Keyboard.isKeyJustPressed(Key.ESCAPE)) log.debug("\n\n" + serialize() + "\n");
     }
 
     @Override

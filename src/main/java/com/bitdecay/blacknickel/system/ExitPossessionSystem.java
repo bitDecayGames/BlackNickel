@@ -1,13 +1,13 @@
 package com.bitdecay.blacknickel.system;
 
-import com.badlogic.gdx.Input;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.*;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectUtils;
+import com.bitdecay.blacknickel.input.Key;
+import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractUpdatableSystem;
-import com.bitdecay.blacknickel.util.InputHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class ExitPossessionSystem extends AbstractUpdatableSystem {
 
-    private List<Integer> exitButtons = Launcher.conf.getConfig("controls").getConfig("keyboard").getStringList("action").stream().map(Input.Keys::valueOf).filter(i -> i >= 0).collect(Collectors.toList());
+    private List<Key> exitButtons = Launcher.conf.getConfig("controls").getConfig("keyboard").getStringList("action").stream().map(Key::fromString).filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
 
     private final static int EXIT_Y_POS_DELTA = 5;
 
@@ -33,7 +33,7 @@ public class ExitPossessionSystem extends AbstractUpdatableSystem {
 
     @Override
     public void update(float delta) {
-        if (InputHelper.isKeyJustPressed(exitButtons)) {
+        if (Keyboard.isAtLeastOneKeyJustPressed(exitButtons)) {
             gobs.forEach(possessed -> {
                 possessed.forEach(PossessableComponent.class, possessableComponent -> {
                     if (possessableComponent.possessor != null && hasSpaceToExit(possessed.getComponent(PositionComponent.class), possessableComponent.possessor.getComponent(SizeComponent.class))) {
