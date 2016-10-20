@@ -13,9 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.util.SoundLibrary;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 
 import java.util.ArrayList;
 import java.util.List;

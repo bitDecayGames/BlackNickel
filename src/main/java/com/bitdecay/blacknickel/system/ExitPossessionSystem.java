@@ -4,10 +4,10 @@ import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.*;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
 import com.bitdecay.blacknickel.gameobject.MyGameObjectUtils;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractUpdatableSystem;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 
 import java.util.List;
 import java.util.Optional;

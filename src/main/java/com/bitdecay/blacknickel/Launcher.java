@@ -2,9 +2,9 @@ package com.bitdecay.blacknickel;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.bitdecay.blacknickel.input.InputApplicationListenerWrapper;
 import com.bitdecay.blacknickel.util.RunMode;
 import com.bitdecay.blacknickel.util.TexturePackerUtils;
+import com.bytebreakstudios.input.InputApplicationListenerWrapper;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import org.apache.log4j.Logger;

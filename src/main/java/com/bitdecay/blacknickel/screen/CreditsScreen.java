@@ -13,8 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.MyGame;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 
 /**
  * This is the generic credits screen.  Almost everything in the credits is populated from the /resources/conf/credits.conf file.  The only reason you should be making changes to this file is to adjust the position or speed of the text.

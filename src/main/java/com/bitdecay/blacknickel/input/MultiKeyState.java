@@ -1,6 +1,8 @@
 package com.bitdecay.blacknickel.input;
 
 import com.bitdecay.jump.gdx.input.KeyState;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 
 import java.util.List;
 

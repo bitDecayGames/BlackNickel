@@ -4,9 +4,9 @@ package com.bitdecay.blacknickel.editor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitdecay.blacknickel.Launcher;
-import com.bitdecay.blacknickel.input.InputApplicationListenerWrapper;
 import com.bitdecay.blacknickel.util.TexturePackerUtils;
 import com.bitdecay.jump.leveleditor.render.LevelEditor;
+import com.bytebreakstudios.input.InputApplicationListenerWrapper;
 import org.apache.log4j.Logger;
 
 /**

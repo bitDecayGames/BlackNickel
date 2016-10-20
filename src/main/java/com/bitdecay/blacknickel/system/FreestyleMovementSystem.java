@@ -5,11 +5,11 @@ import com.bitdecay.blacknickel.component.FreestyleMovementComponent;
 import com.bitdecay.blacknickel.component.PhysicsComponent;
 import com.bitdecay.blacknickel.component.UnderControlComponent;
 import com.bitdecay.blacknickel.gameobject.MyGameObject;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.room.AbstractRoom;
 import com.bitdecay.blacknickel.system.abstracted.AbstractForEachUpdatableSystem;
 import com.bitdecay.jump.geom.BitPoint;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 
 import java.util.HashMap;
 import java.util.List;

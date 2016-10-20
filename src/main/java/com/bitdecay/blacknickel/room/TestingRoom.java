@@ -7,12 +7,12 @@ import com.badlogic.gdx.utils.StringBuilder;
 import com.bitdecay.blacknickel.Launcher;
 import com.bitdecay.blacknickel.component.PositionComponent;
 import com.bitdecay.blacknickel.component.TextComponent;
-import com.bitdecay.blacknickel.input.InputRecorder;
-import com.bitdecay.blacknickel.input.InputRecording;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.test.TestZones;
 import com.bitdecay.jump.level.Level;
+import com.bytebreakstudios.input.InputRecorder;
+import com.bytebreakstudios.input.InputRecording;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 
 
 /**

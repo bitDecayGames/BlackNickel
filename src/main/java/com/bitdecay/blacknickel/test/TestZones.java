@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 import com.typesafe.config.Config;
 import org.apache.log4j.Logger;
 

@@ -4,12 +4,12 @@ package com.bitdecay.blacknickel.room;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.bitdecay.blacknickel.component.*;
-import com.bitdecay.blacknickel.input.InputRecording;
-import com.bitdecay.blacknickel.input.Key;
-import com.bitdecay.blacknickel.input.Keyboard;
 import com.bitdecay.blacknickel.screen.TestRunScreen;
 import com.bitdecay.blacknickel.test.TestZones;
 import com.bitdecay.jump.level.Level;
+import com.bytebreakstudios.input.InputRecording;
+import com.bytebreakstudios.input.Key;
+import com.bytebreakstudios.input.Keyboard;
 import com.typesafe.config.Config;
 
 /**
