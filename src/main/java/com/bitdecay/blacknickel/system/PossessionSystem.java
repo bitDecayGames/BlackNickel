@@ -43,6 +43,8 @@ public class PossessionSystem extends AbstractUpdatableSystem {
                 gobs.stream().filter(b -> b.hasComponents(PossessableComponent.class, PositionComponent.class) && possessor != b).sorted((a, b) -> distance(possessorPos, a.getComponent(PositionComponent.class).get(), b.getComponent(PositionComponent.class).get())).findFirst().ifPresent(possessable -> {
                     possessor.removeComponent(UnderControlComponent.class);
                     possessable.addComponent(UnderControlComponent.class);
+
+                    // TODO: I'd like to try and add a particle emitter on some sort of bullet thing here to show where you are possessing
                 });
                 room.realtime();
             }

@@ -26,6 +26,9 @@ public class GenericRoom extends AbstractRoom {
         new ActivationTriggerSystem(this);
         new RespawnSystem(this, Integer.MIN_VALUE, Integer.MAX_VALUE, -1000, Integer.MAX_VALUE);
         new DespawnSystem(this, Integer.MIN_VALUE, Integer.MAX_VALUE, -1000, Integer.MAX_VALUE);
+        new ParticleEmitterSystem(this);
+        new ParticleSystem(this);
+        new NonPhysicsMovementSystem(this);
         // drawables
         new ShapeDrawSystem(this);
         new DrawSystem(this);
